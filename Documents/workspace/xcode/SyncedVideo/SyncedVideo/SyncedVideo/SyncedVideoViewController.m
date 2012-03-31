@@ -14,8 +14,6 @@
 @synthesize playerLayer = playerLayer_;
 
 
-
-
 -(IBAction)playAVPlayer:(id)sender{
     
     UIButton *playButton = (UIButton *) sender; 
@@ -26,30 +24,6 @@
     if([playButton.titleLabel.text isEqualToString:@"Wheels"]){
         vidTitle = @"wheels";
     }
-    
-    
-    /*
-    //[avPlayer pause];
-    
-    UIButton *playButton = (UIButton *) sender; 
-	
-    NSString *vidTitle;
-    if([playButton.titleLabel.text isEqualToString:@"Froggie"]){
-        vidTitle = @"froggie-sophie";
-    }
-    if([playButton.titleLabel.text isEqualToString:@"Wheels"]){
-        vidTitle = @"wheels";
-    }
-    
-    NSString *filepath = [[NSBundle mainBundle] pathForResource:vidTitle ofType:@"mp4"];
-    NSURL    *fileURL    =   [NSURL fileURLWithPath:filepath];
-    
-    AVPlayer *avPlayer = [[AVPlayer alloc] initWithURL:fileURL];
-    //[avPlayer initWithURL:fileURL];
-    
-    //CALayer *superlayer = <#Get a CALayer#>;
-    //AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:avPlayer];
-    */
     
     [self playThatLayer:(vidTitle)];
 }
@@ -127,56 +101,6 @@
 //- (void)dealloc {
 //    [super dealloc];
 //}
-
-    /*
-     -(IBAction)playMovie:(id)sender{
-     
-     UIButton *playButton = (UIButton *) sender; 
-     
-     NSString *vidTitle;
-     if([playButton.titleLabel.text isEqualToString:@"Froggie"]){
-     vidTitle = @"froggie-sophie";
-     }
-     if([playButton.titleLabel.text isEqualToString:@"Wheels"]){
-     vidTitle = @"wheels";
-     }
-     
-     NSString *filepath = [[NSBundle mainBundle] pathForResource:vidTitle ofType:@"mp4"];
-     NSURL    *fileURL    =   [NSURL fileURLWithPath:filepath];
-     
-     MPMoviePlayerController *moviePlayerController = [[MPMoviePlayerController alloc] initWithContentURL:fileURL];
-     
-     [[NSNotificationCenter defaultCenter] addObserver:self
-     selector:@selector(moviePlaybackComplete:)
-     name:MPMoviePlayerPlaybackDidFinishNotification
-     object:moviePlayerController];
-     
-     [moviePlayerController.view setFrame:CGRectMake(playButton.frame.origin.x, 
-     playButton.frame.origin.y, 
-     playButton.frame.size.width, 
-     playButton.frame.size.height)];
-     
-     [self.view addSubview:moviePlayerController.view];
-     moviePlayerController.fullscreen = YES;
-     moviePlayerController.useApplicationAudioSession = NO;
-     
-     //moviePlayerController.scalingMode = MPMovieScalingModeFill;
-     
-     [moviePlayerController play];
-     
-     }
-     
-     - (void)moviePlaybackComplete:(NSNotification *)notification{
-     
-     MPMoviePlayerController *moviePlayerController = [notification object];
-     [[NSNotificationCenter defaultCenter] removeObserver:self
-     name:MPMoviePlayerPlaybackDidFinishNotification
-     object:moviePlayerController];
-     
-     [moviePlayerController.view removeFromSuperview];
-     //[moviePlayerController release];
-     }
-     */
      
      
 @end
