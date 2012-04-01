@@ -30,6 +30,8 @@
 		B5046AAC152599E7001E258C /* froggie-sophie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B5046A9F15258998001E258C /* froggie-sophie.mp4 */; };
 		B5046AAE15259D12001E258C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5046AAD15259D12001E258C /* AVFoundation.framework */; };
 		B5F494071527BE73005DE192 /* IPadController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5F494061527BE73005DE192 /* IPadController.xib */; };
+		B5F4940A1527CDC1005DE192 /* cork_board_800x1000.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B5F494091527CDC1005DE192 /* cork_board_800x1000.jpg */; };
+		B5F4940C1527D5F0005DE192 /* post_it.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F4940B1527D5F0005DE192 /* post_it.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,8 @@
 		B5046AA81525904B001E258C /* MainWindow-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		B5046AAD15259D12001E258C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B5F494061527BE73005DE192 /* IPadController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IPadController.xib; sourceTree = "<group>"; };
+		B5F494091527CDC1005DE192 /* cork_board_800x1000.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cork_board_800x1000.jpg; sourceTree = "<group>"; };
+		B5F4940B1527D5F0005DE192 /* post_it.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = post_it.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +153,8 @@
 		B5046A8C1525895F001E258C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				B5F4940B1527D5F0005DE192 /* post_it.png */,
+				B5F494091527CDC1005DE192 /* cork_board_800x1000.jpg */,
 				B5046A8E15258988001E258C /* icon-144.png */,
 				B5046A8F15258988001E258C /* icon-72.png */,
 				B5046A9015258988001E258C /* Default@2x.png */,
@@ -236,6 +242,8 @@
 				B5046AAB152599E1001E258C /* wheels.mp4 in Resources */,
 				B5046AAC152599E7001E258C /* froggie-sophie.mp4 in Resources */,
 				B5F494071527BE73005DE192 /* IPadController.xib in Resources */,
+				B5F4940A1527CDC1005DE192 /* cork_board_800x1000.jpg in Resources */,
+				B5F4940C1527D5F0005DE192 /* post_it.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,7 +310,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ben Gardella (B8X2F269VW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ben Gardella (B8X2F269VW)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -314,6 +323,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				MACH_O_TYPE = mh_execute;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "0BB4EBCA-0354-4260-B375-87F065727172";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0BB4EBCA-0354-4260-B375-87F065727172";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -345,6 +356,43 @@
 			};
 			name = Release;
 		};
+		B59304311528E157000D4C3D /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "SyncedVideo-Info.plist";
+				INSTALL_PATH = /Applications;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				MACH_O_TYPE = mh_execute;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = "";
+			};
+			name = Distribution;
+		};
+		B59304321528E157000D4C3D /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SyncedVideo/SyncedVideo-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "SyncedVideo/SyncedVideo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Distribution;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -353,6 +401,7 @@
 			buildConfigurations = (
 				B5046A841525856B001E258C /* Debug */,
 				B5046A851525856B001E258C /* Release */,
+				B59304311528E157000D4C3D /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -362,6 +411,7 @@
 			buildConfigurations = (
 				B5046A871525856B001E258C /* Debug */,
 				B5046A881525856B001E258C /* Release */,
+				B59304321528E157000D4C3D /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
