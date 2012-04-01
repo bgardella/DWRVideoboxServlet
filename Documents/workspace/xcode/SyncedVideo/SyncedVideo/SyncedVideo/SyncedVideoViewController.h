@@ -24,15 +24,19 @@
     
     AVPlayer *player_;
     AVPlayerLayer *playerLayer_;
+    UIView *playerView_;
     
 }
 @property(nonatomic, retain) AVPlayer *player;
 @property(nonatomic, retain) AVPlayerLayer *playerLayer;
-
+@property(nonatomic, retain) UIView *playerView;
 
 //-(IBAction)playMovie:(id)sender;
 
 -(IBAction)playAVPlayer:(id)sender;
+-(IBAction)pauseAVPlayer:(id)sender;
+-(IBAction)stopAVPlayer:(id)sender;
+-(IBAction)restartAVPlayer:(id)sender;
 
 - (void)playThatLayer:(NSString*)input;
 
