@@ -10,8 +10,10 @@
 #import <MediaPlayer/MediaPlayer.h> 
 #import <AVFoundation/AVPlayer.h>
 #import <AVFoundation/AVPlayerLayer.h>
-#import <AVFoundation/AVAudioMix.h>
+#import <AVFoundation/AVAudioSession.h>
 #import <AVFoundation/AVAsset.h>
+
+static void *AVSPPlayerLayerReadyForDisplay = &AVSPPlayerLayerReadyForDisplay;
 
 @interface SyncedVideoViewController : UIViewController {
     //AVPlayer *avPlayer;
@@ -25,11 +27,17 @@
     AVPlayer *player_;
     AVPlayerLayer *playerLayer_;
     UIView *playerView_;
-    
 }
 @property(nonatomic, retain) AVPlayer *player;
 @property(nonatomic, retain) AVPlayerLayer *playerLayer;
 @property(nonatomic, retain) UIView *playerView;
+@property(nonatomic, retain) UIActivityIndicatorView *vidWait; 
+
+@property(retain) IBOutlet UIButton *stopButton;
+@property(retain) IBOutlet UIButton *startButton;
+@property(retain) IBOutlet UIButton *pauseButton;
+@property(retain) IBOutlet UISlider *videoSlider;
+
 
 //-(IBAction)playMovie:(id)sender;
 
