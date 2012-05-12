@@ -16,6 +16,23 @@
 @synthesize pauseButton;
 @synthesize videoSlider;
 
+- (void)drawRect:(CGRect)rect {
+	UIImage *image = [UIImage imageNamed:@"movie_lower-controls_background"];
+    
+	[image drawAtPoint:self.bounds.origin blendMode:kCGBlendModeNormal alpha:1.0];
+}
+
+
+- (void)togglePlayPauseButton:(BOOL)isPlayerPaused {
+
+    if(isPlayerPaused){
+        self.startButton.hidden = YES;
+        self.pauseButton.hidden = NO;
+    } else {
+        self.startButton.hidden = NO;
+        self.pauseButton.hidden = YES;
+    }
+}
 
 
 /*

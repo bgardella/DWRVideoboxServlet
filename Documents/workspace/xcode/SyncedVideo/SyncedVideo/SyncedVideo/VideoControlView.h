@@ -24,4 +24,7 @@
 @property(retain) IBOutlet UIButton *pauseButton;
 @property(retain) IBOutlet UISlider *videoSlider;
 
+- (void)togglePlayPauseButton:(BOOL)isPlayerPaused;
+
+
 @end
