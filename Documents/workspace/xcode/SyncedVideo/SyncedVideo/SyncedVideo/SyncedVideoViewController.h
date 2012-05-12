@@ -12,11 +12,11 @@
 #import <AVFoundation/AVPlayerLayer.h>
 #import <AVFoundation/AVAudioSession.h>
 #import <AVFoundation/AVAsset.h>
+#import "VideoControlView.h"
 
 static void *AVSPPlayerLayerReadyForDisplay = &AVSPPlayerLayerReadyForDisplay;
 
 @interface SyncedVideoViewController : UIViewController {
-    //AVPlayer *avPlayer;
     
     NSString *froggieFP;
     NSURL    *froggieURL;
@@ -26,26 +26,28 @@ static void *AVSPPlayerLayerReadyForDisplay = &AVSPPlayerLayerReadyForDisplay;
     
     AVPlayer *player_;
     AVPlayerLayer *playerLayer_;
-    UIView *playerView_;
+    //UIView *playerView_;
+    
+    IBOutlet UIScrollView *scrollView;
+    
+    VideoControlView *videoControlView;
 }
 @property(nonatomic, retain) AVPlayer *player;
 @property(nonatomic, retain) AVPlayerLayer *playerLayer;
-@property(nonatomic, retain) UIView *playerView;
+//@property(nonatomic, retain) UIView *playerView;
+
 @property(nonatomic, retain) UIActivityIndicatorView *vidWait; 
 
-@property(retain) IBOutlet UIButton *stopButton;
-@property(retain) IBOutlet UIButton *startButton;
-@property(retain) IBOutlet UIButton *pauseButton;
-@property(retain) IBOutlet UISlider *videoSlider;
+//@property(nonatomic, retain) NSObject *playerObserver;
 
-
-//-(IBAction)playMovie:(id)sender;
+@property (nonatomic, retain) IBOutlet VideoControlView *videoControlView;
 
 -(IBAction)playAVPlayer:(id)sender;
 -(IBAction)pauseAVPlayer:(id)sender;
 -(IBAction)stopAVPlayer:(id)sender;
 -(IBAction)restartAVPlayer:(id)sender;
 
-- (void)playThatLayer:(NSString*)input;
+- (void)playThatLayer:(NSString*)input
+                     :(NSString*)input2;
 
 @end
