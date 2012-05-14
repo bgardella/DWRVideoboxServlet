@@ -10,14 +10,18 @@
 
 @implementation VideoControlView
 
-
 @synthesize startButton;
 @synthesize stopButton;
 @synthesize pauseButton;
 @synthesize videoSlider;
 
+@synthesize timeElapsed;
+@synthesize timeRemaining;
+
+@synthesize visibleCounter;
+
 - (void)drawRect:(CGRect)rect {
-	UIImage *image = [UIImage imageNamed:@"movie_lower-controls_background"];
+	UIImage *image = [UIImage imageNamed:@"control_panel"];
     
 	[image drawAtPoint:self.bounds.origin blendMode:kCGBlendModeNormal alpha:1.0];
 }
@@ -34,63 +38,43 @@
     }
 }
 
+- (void)fadeOutControls{
+    
+    if(self.alpha == 1.0){
+        self.alpha = 1.0;
+        [UIView beginAnimations:@"Fade-in" context:NULL];
+        [UIView setAnimationDuration:1.0];
+        self.alpha = 0.0;
+        [UIView commitAnimations];
+        
+        visibleCounter = 0;
+    }
+}
 
-/*
- 
- 
- [self.pauseButton setHidden:NO];
- [self.startButton setHidden:YES];
- [self.stopButton setHidden:NO];
- 
- //add controls to the player view
- [self.pauseButton setBounds:CGRectMake(10,10,100,100)];
- [self.pauseButton setCenter:CGPointMake(10, 10)];
- [self.playerLayer addSubview:self.pauseButton];
- 
- 
- 
- -(IBAction)pauseAVPlayer:(id)sender{
- [self.videoSlider setHidden:NO];
- [self.pauseButton setHidden:YES];
- [self.startButton setHidden:NO];
- [self.stopButton setHidden:NO];
- [self.player pause];
- //[self.subPlayer pause];
- }
- 
- -(IBAction)restartAVPlayer:(id)sender{
- if(!self.playerLayer.hidden){
- [self.videoSlider setHidden:YES];
- [self.pauseButton setHidden:NO];
- [self.startButton setHidden:YES];
- [self.player play];
- //[self.subPlayer play];
- }
- }
- 
- -(IBAction)stopAVPlayer:(id)sender{
- [self.videoSlider setHidden:YES];
- [self.pauseButton setHidden:YES];
- [self.startButton setHidden:YES];
- [self.stopButton setHidden:YES];
- [self.player pause]; 
- [self.playerLayer setHidden:YES];
- //[self.subPlayer pause]; 
- //[self.subPlayerLayer setHidden:YES];
- }
- 
- - (void)viewDidLoad
- {
- // Do any additional setup after loading the view, typically from a nib.
- 
- [self.pauseButton setHidden:YES];
- [self.startButton setHidden:YES];
- [self.stopButton setHidden:YES];
- [self.videoSlider setHidden:YES];
- }
- 
- 
- */
+- (void)fadeInControls{
+    
+    if(self.alpha == 0.0){
+        self.alpha = 0.0;
+        [UIView beginAnimations:@"Fade-in" context:NULL];
+        [UIView setAnimationDuration:0.6];
+        self.alpha = 1.0;
+        [UIView commitAnimations];
+        
+        visibleCounter = 0;
+    }
+}
 
+- (void)resetCounter {
+    visibleCounter = 0;
+}
+
+- (void)dealloc {
+    [startButton release];
+    [stopButton release];
+    [pauseButton release];
+	[timeElapsed release];
+	[timeRemaining release];
+	[super dealloc];
+}
 
 @end

@@ -8,20 +8,40 @@
 
 #import "SyncedVideoAppDelegate.h"
 #import "SyncedVideoViewController.h"
+#import "VideoPlayerViewController.h"
 
 @implementation SyncedVideoAppDelegate
 
 @synthesize window;
 @synthesize viewController;
+@synthesize playerViewController;
+@synthesize navigationController;
 
 #pragma mark -
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    //adding navigation controller manually
     
-    [window addSubview:viewController.view];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){ 
+        viewController = [[SyncedVideoViewController alloc] initWithNibName:@"IPadController" bundle:nil]; 
+        playerViewController = [[VideoPlayerViewController alloc] initWithNibName:@"VideoPlayerViewController" bundle:nil]; 
+    }else {
+        viewController = [[SyncedVideoViewController alloc] initWithNibName:@"SyncedVideoViewController" bundle:nil]; 
+        playerViewController = [[VideoPlayerViewController alloc] initWithNibName:@"VideoPlayerViewController-Phone" bundle:nil]; 
+    }
+    
+    navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];      
+    navigationController.navigationBarHidden = YES;
+    
+    [self.window addSubview:navigationController.view];  
+
+    ///////////////////////////////////////////
+    //without navigation controller
+    //[window addSubview:viewController.view];
+    ///////////////////////////////////////////
+    
     [window makeKeyAndVisible];
     return YES;
 }

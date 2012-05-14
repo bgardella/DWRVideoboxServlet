@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface VideoControlView : UIView {
 
 @protected
@@ -17,6 +16,8 @@
     UIButton *pauseButton;
     UISlider *videoSlider;
     
+    UILabel *timeElapsed;
+	UILabel *timeRemaining;
 }
 
 @property(retain) IBOutlet UIButton *stopButton;
@@ -24,7 +25,15 @@
 @property(retain) IBOutlet UIButton *pauseButton;
 @property(retain) IBOutlet UISlider *videoSlider;
 
-- (void)togglePlayPauseButton:(BOOL)isPlayerPaused;
+@property (nonatomic, retain) IBOutlet UILabel *timeElapsed;
+@property (nonatomic, retain) IBOutlet UILabel *timeRemaining;
 
+@property (nonatomic, assign) int16_t visibleCounter;
+
+
+- (void)togglePlayPauseButton:(BOOL)isPlayerPaused;
+- (void)fadeInControls;
+- (void)fadeOutControls;
+- (void)resetCounter;
 
 @end
