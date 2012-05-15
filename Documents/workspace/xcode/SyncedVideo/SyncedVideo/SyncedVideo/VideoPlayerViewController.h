@@ -28,6 +28,7 @@ static void *AVSPPlayerLayerReadyForDisplay = &AVSPPlayerLayerReadyForDisplay;
     AVPlayerLayer *playerLayer;
     
     VideoControlView *videoControlView;
+    IBOutlet UIView *vidWait;
     
     id timeObserver;
     BOOL isIPhone;
@@ -35,7 +36,6 @@ static void *AVSPPlayerLayerReadyForDisplay = &AVSPPlayerLayerReadyForDisplay;
 
 @property(nonatomic, retain) AVPlayer *player;
 @property(nonatomic, retain) AVPlayerLayer *playerLayer;
-@property(nonatomic, retain) UIActivityIndicatorView *vidWait; 
 @property (nonatomic, retain) IBOutlet VideoControlView *videoControlView;
 @property (nonatomic, retain) id timeObserver;
 @property (nonatomic, assign) CMTime movieDuration;

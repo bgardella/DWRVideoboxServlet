@@ -22,7 +22,6 @@ static int VIDEO_BTN_IDX = 1001;
 @synthesize playerLayer;
 
 //ui controls
-@synthesize vidWait= vidWait_;
 @synthesize videoControlView;
 @synthesize timeObserver;
 @synthesize movieDuration;
@@ -76,8 +75,11 @@ static int VIDEO_BTN_IDX = 1001;
     
     
     //wait spinny animation
-    self.vidWait = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    //self.vidWait = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
 	
+    
+    
+    
 	self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
     
     //position the player
@@ -89,9 +91,7 @@ static int VIDEO_BTN_IDX = 1001;
     
     [self.view.layer addSublayer:self.playerLayer];	
     
-	[self.vidWait setHidesWhenStopped:YES];
-    [self.vidWait startAnimating];
-    [self.view addSubview:self.vidWait];
+	vidWait.alpha = 1.0;
     
     [self.playerLayer setHidden:YES];
     
@@ -168,12 +168,12 @@ static int VIDEO_BTN_IDX = 1001;
     if (isIPhone){ 
         self.playerLayer.bounds = CGRectMake(0, 0, 640, 300);
         self.playerLayer.position = CGPointMake(260, 150);
-        [self.vidWait setCenter:CGPointMake(120, 120)];
+        //[self.vidWait setCenter:CGPointMake(120, 120)];
     }
     else{ //ipad
         self.playerLayer.bounds = CGRectMake(0, 0, 852, 480);
         self.playerLayer.position = CGPointMake(520, 382);
-        [self.vidWait setCenter:CGPointMake(400, 400)];
+        //[self.vidWait setCenter:CGPointMake(400, 400)];
     }
     
     self.playerLayer.borderColor = [UIColor blackColor].CGColor;
@@ -313,7 +313,7 @@ static Float64 secondsWithCMTimeOrZeroIfInvalid(CMTime time) {
 		if ([[change objectForKey:NSKeyValueChangeNewKey] boolValue] == YES) {
 			// The AVPlayerLayer is ready for display. Hide the loading spinner and show it.
 			[self.playerLayer setHidden:NO];
-            [self.vidWait setHidden:YES];
+            [vidWait setHidden:YES];
             
             [self addTimeObserver];
             self.movieDuration = self.player.currentItem.asset.duration;
