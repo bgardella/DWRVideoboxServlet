@@ -25,15 +25,15 @@
     //adding navigation controller manually
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){ 
-        viewController = [[SyncedVideoViewController alloc] initWithNibName:@"IPadController" bundle:nil]; 
-        playerViewController = [[VideoPlayerViewController alloc] initWithNibName:@"VideoPlayerViewController" bundle:nil]; 
+        self.viewController = [[SyncedVideoViewController alloc] initWithNibName:@"IPadController" bundle:nil]; 
+        self.playerViewController = [[VideoPlayerViewController alloc] initWithNibName:@"VideoPlayerViewController" bundle:nil]; 
     }else {
-        viewController = [[SyncedVideoViewController alloc] initWithNibName:@"SyncedVideoViewController" bundle:nil]; 
-        playerViewController = [[VideoPlayerViewController alloc] initWithNibName:@"VideoPlayerViewController-Phone" bundle:nil]; 
+        self.viewController = [[SyncedVideoViewController alloc] initWithNibName:@"SyncedVideoViewController" bundle:nil]; 
+        self.playerViewController = [[VideoPlayerViewController alloc] initWithNibName:@"VideoPlayerViewController-Phone" bundle:nil]; 
     }
     
-    navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];      
-    navigationController.navigationBarHidden = YES;
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];      
+    self.navigationController.navigationBarHidden = YES;
     
     [self.window addSubview:navigationController.view];  
 
@@ -45,6 +45,33 @@
     [window makeKeyAndVisible];
     return YES;
 }
+
+- (void)flipToVideoViewWithButtonId:(id)sender{
+    /*
+    //check to see if the player is already playing or paused
+    if(self.playerViewController.playerLayer.opacity == 0.99f){
+        return;
+    }
+    if(self.playerViewController.player.rate != 0.0f){
+        return;
+    }
+    */
+    [navigationController pushViewController:playerViewController animated:YES];
+    
+    UIButton *playButton = (UIButton *) sender;
+    if(playButton != nil){
+        [playerViewController loadVideoByButtonPress:(playButton)];
+    }
+}
+ 
+     
+- (void)flipToHomeView{
+    if(self.navigationController != nil){
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
+     
+
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -85,6 +112,8 @@
 
 - (void)dealloc {
     [viewController release];
+    [playerViewController release];
+    [navigationController release];
     [window release];
     [super dealloc];
 }

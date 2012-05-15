@@ -24,4 +24,8 @@
 @property (nonatomic, retain) IBOutlet VideoPlayerViewController *playerViewController;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
+
+- (void)flipToVideoViewWithButtonId:(id)sender;
+- (void)flipToHomeView;
+
 @end

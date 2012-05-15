@@ -44,6 +44,7 @@
 						<string key="NSFrameSize">{1024, 77}</string>
 						<reference key="NSSuperview" ref="357991146"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="248302703"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -58,6 +59,7 @@
 						<string key="NSFrame">{{0, 77}, {1030, 710}}</string>
 						<reference key="NSSuperview" ref="357991146"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="1046602863"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -72,6 +74,7 @@
 						<string key="NSFrame">{{56, 20}, {72, 37}}</string>
 						<reference key="NSSuperview" ref="357991146"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="13461967"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -133,35 +136,13 @@
 								<reference key="IBUIFontDescription" ref="1067093543"/>
 								<reference key="IBUIFont" ref="641424022"/>
 							</object>
-							<object class="IBUIButton" id="221700462">
-								<reference key="NSNextResponder" ref="1046602863"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{15, 39}, {63, 25}}</string>
-								<reference key="NSSuperview" ref="1046602863"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="285073934"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<int key="IBUIButtonType">1</int>
-								<string key="IBUINormalTitle">close</string>
-								<reference key="IBUIHighlightedTitleColor" ref="250221328"/>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="358707743"/>
-								<reference key="IBUIFontDescription" ref="1067093543"/>
-								<reference key="IBUIFont" ref="641424022"/>
-							</object>
 							<object class="IBUIButton" id="558085801">
 								<reference key="NSNextResponder" ref="1046602863"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{177, 29}, {56, 45}}</string>
 								<reference key="NSSuperview" ref="1046602863"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="411013835"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -187,7 +168,7 @@
 								<string key="NSFrame">{{57, 9}, {289, 23}}</string>
 								<reference key="NSSuperview" ref="1046602863"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="411013835"/>
+								<reference key="NSNextKeyView" ref="285073934"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -233,7 +214,7 @@
 								<string key="NSFrame">{{354, 11}, {42, 21}}</string>
 								<reference key="NSSuperview" ref="1046602863"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="221700462"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -255,13 +236,13 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="363324686"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<float key="IBUIAlpha">0.0</float>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
 				<string key="NSFrameSize">{1024, 748}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView" ref="256308859"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -314,14 +295,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">stopButton</string>
-						<reference key="source" ref="1046602863"/>
-						<reference key="destination" ref="221700462"/>
-					</object>
-					<int key="connectionID">44</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">pauseButton</string>
 						<reference key="source" ref="1046602863"/>
 						<reference key="destination" ref="285073934"/>
@@ -343,6 +316,59 @@
 						<reference key="destination" ref="411013835"/>
 					</object>
 					<int key="connectionID">47</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">videoSlider</string>
+						<reference key="source" ref="1046602863"/>
+						<reference key="destination" ref="527709804"/>
+					</object>
+					<int key="connectionID">54</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">restartAVPlayer:</string>
+						<reference key="source" ref="558085801"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">1</int>
+					</object>
+					<int key="connectionID">50</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">pauseAVPlayer:</string>
+						<reference key="source" ref="285073934"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">1</int>
+					</object>
+					<int key="connectionID">49</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">scrubValueChanged:</string>
+						<reference key="source" ref="527709804"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">13</int>
+					</object>
+					<int key="connectionID">52</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">startScrubbing:</string>
+						<reference key="source" ref="527709804"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">1</int>
+					</object>
+					<int key="connectionID">55</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">stopScrubbing:</string>
+						<reference key="source" ref="527709804"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">57</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -390,13 +416,13 @@
 						<int key="objectID">9</int>
 						<reference key="object" ref="248302703"/>
 						<reference key="parent" ref="357991146"/>
+						<string key="objectName">backButton</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">36</int>
 						<reference key="object" ref="1046602863"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="527709804"/>
-							<reference ref="221700462"/>
 							<reference ref="285073934"/>
 							<reference ref="558085801"/>
 							<reference ref="363324686"/>
@@ -407,11 +433,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">42</int>
 						<reference key="object" ref="527709804"/>
-						<reference key="parent" ref="1046602863"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">41</int>
-						<reference key="object" ref="221700462"/>
 						<reference key="parent" ref="1046602863"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -451,7 +472,6 @@
 				<real value="0.0" key="39.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="40.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="41.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="42.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -461,7 +481,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">48</int>
+			<int key="maxID">57</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -510,17 +530,40 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">VideoPlayerViewController</string>
 					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">flipToHomeView:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">flipToHomeView:</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="flipToHomeView:">id</string>
+						<string key="pauseAVPlayer:">id</string>
+						<string key="restartAVPlayer:">id</string>
+						<string key="scrubValueChanged:">id</string>
+						<string key="startScrubbing:">id</string>
+						<string key="stopScrubbing:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="flipToHomeView:">
 							<string key="name">flipToHomeView:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+						<object class="IBActionInfo" key="pauseAVPlayer:">
+							<string key="name">pauseAVPlayer:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="restartAVPlayer:">
+							<string key="name">restartAVPlayer:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="scrubValueChanged:">
+							<string key="name">scrubValueChanged:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="startScrubbing:">
+							<string key="name">startScrubbing:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="stopScrubbing:">
+							<string key="name">stopScrubbing:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">videoControlView</string>
 						<string key="NS.object.0">VideoControlView</string>

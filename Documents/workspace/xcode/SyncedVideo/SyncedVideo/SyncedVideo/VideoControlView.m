@@ -20,10 +20,14 @@
 
 @synthesize visibleCounter;
 
+
 - (void)drawRect:(CGRect)rect {
-	UIImage *image = [UIImage imageNamed:@"control_panel"];
     
-	[image drawAtPoint:self.bounds.origin blendMode:kCGBlendModeNormal alpha:1.0];
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+        UIImage *image = [UIImage imageNamed:@"control_panel"];
+        [image drawAtPoint:self.bounds.origin blendMode:kCGBlendModeNormal alpha:1.0];
+    }
+    self.alpha = 1.0;
 }
 
 
