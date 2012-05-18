@@ -24,6 +24,34 @@
     
 }
 
+- (IBAction)changePage:(id)sender{
+    
+    int pgOffset = 220;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){ //ipad
+        pgOffset = 456;
+    }
+    
+    NSLog(@"page change: %i", pageControl.currentPage);
+    //page 0 : 0 offset
+    //page 1 : 456 offset
+    CGPoint pt = scrollView.contentOffset;
+    CGPoint newPt = CGPointMake(pageControl.currentPage*pgOffset, pt.y);
+    [scrollView setContentOffset:newPt animated:YES];
+}
+
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)passedScrollView {
+    
+    NSLog(@"SCROLL VIEW HERE!!!");
+    CGFloat pageWidth = passedScrollView.frame.size.width;
+    int xoff =  passedScrollView.contentOffset.x;
+    NSLog(@"xoff:%i, width:%f", xoff, pageWidth);
+    
+    int page = xoff/3;
+    pageControl.currentPage = page;
+}
+
+
 //////////////////////////////////
 //////////////////////////////////
 //////////////////////////////////
@@ -51,6 +79,9 @@
     }else {
         [scrollView setContentSize:CGSizeMake(700, 128)];
     }
+    
+    pageControl.numberOfPages = 2;
+    pageControl.currentPage = 0;
     
     [super viewDidLoad];
 }

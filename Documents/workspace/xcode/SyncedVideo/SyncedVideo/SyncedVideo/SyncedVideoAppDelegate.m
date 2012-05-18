@@ -70,8 +70,6 @@
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
-     
-
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {

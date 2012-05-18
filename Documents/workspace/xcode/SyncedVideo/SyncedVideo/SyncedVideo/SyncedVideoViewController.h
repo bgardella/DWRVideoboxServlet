@@ -10,10 +10,14 @@
 
 @interface SyncedVideoViewController : UIViewController {
 @private    
+    
+    IBOutlet UIPageControl *pageControl;
     IBOutlet UIScrollView *scrollView;
 }
 
--(IBAction)flipToVideoView:(id)sender;
+- (IBAction)flipToVideoView:(id)sender;
+- (IBAction)changePage:(id)sender;
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;
 
 @end

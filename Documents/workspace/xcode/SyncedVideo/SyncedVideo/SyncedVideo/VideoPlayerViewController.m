@@ -23,10 +23,13 @@ static int VIDEO_BTN_IDX = 1001;
 
 //ui controls
 @synthesize videoControlView;
+@synthesize karaokeView;
 @synthesize timeObserver;
+@synthesize timeCodeObserver;
 @synthesize movieDuration;
 
 @synthesize isIPhone;
+
 
 - (IBAction)flipToHomeView:(id)sender {
     
@@ -41,26 +44,37 @@ static int VIDEO_BTN_IDX = 1001;
 
 - (void)loadVideoByButtonPress:(UIButton *)buttonPressed{
     NSString *vidTitle;
-    NSString *subTitle;
+    NSString *lrcTitle;
     if([buttonPressed.titleLabel.text isEqualToString:@"Froggie"]){
         vidTitle = @"froggie-sophie";
-        subTitle = @"froggie_lyrics";
+        lrcTitle = @"froggie";
     }
     if([buttonPressed.titleLabel.text isEqualToString:@"Wheels"]){
         vidTitle = @"wheels";
-        subTitle = @"froggie_lyrics_01";
+        lrcTitle = @"wheels";
     }
     
     [self messWithAudio];
     
     [self playThatLayer:(vidTitle)
-                       :(subTitle)];
+                       :(lrcTitle)];
 }
 
 
 - (void)playThatLayer:(NSString *)vidTitle
-                     :(NSString *)subTitle {
+                     :(NSString *)lrcTitle {
 	
+    [self parseLRCFile:lrcTitle];
+    
+    int counter = 0;
+    while(karaokeTimeArr.count == 0 || karaokeLyricArr.count == 0){
+        NSLog(@"KARAOKE LYRICS DID NOT LOAD!!!!!");
+        [self parseLRCFile:lrcTitle];
+        counter++;
+        if(counter > 5){
+            break;
+        }
+    }
     
     NSString *moviePath = [[NSBundle mainBundle] pathForResource:vidTitle ofType:@"mp4"];
     
@@ -73,18 +87,10 @@ static int VIDEO_BTN_IDX = 1001;
     
     self.player = [[[AVPlayer alloc] initWithURL:[NSURL fileURLWithPath:moviePath]] autorelease];
     
-    
-    //wait spinny animation
-    //self.vidWait = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-	
-    
-    
-    
 	self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
     
     //position the player
     [self positionPlayer];
-    
     
     //add observer onto playerLayer so we can cancel the spinny
     [self.playerLayer addObserver:self forKeyPath:@"readyForDisplay" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:AVSPPlayerLayerReadyForDisplay];
@@ -95,6 +101,7 @@ static int VIDEO_BTN_IDX = 1001;
     
     [self.playerLayer setHidden:YES];
     
+    [self.view bringSubviewToFront:self.karaokeView];
     [self.view bringSubviewToFront:self.videoControlView];    
     [self.videoControlView togglePlayPauseButton:(YES)];
     
@@ -103,8 +110,67 @@ static int VIDEO_BTN_IDX = 1001;
     if(isIPhone){
         [self.videoControlView resetCounter];
     }
+    
 }
 
+- (void)parseLRCFile:(NSString *)lrcTitle{
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:lrcTitle ofType:@"lrc"];
+    NSData *fileContents = [NSData dataWithContentsOfFile:filePath];
+    NSString *content = [NSString stringWithUTF8String:[fileContents bytes]];
+    NSArray *values = [content componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    
+    karaokeTimeArr = [[NSMutableArray alloc] initWithCapacity:values.count];
+    karaokeLyricArr = [[NSMutableArray alloc] initWithCapacity:values.count];
+    
+    NSUInteger counter = 0;
+    
+    for (NSString *lineStr in values) {
+        
+        NSRange range1 = [lineStr rangeOfString:@"["];
+        NSRange range2 = [lineStr rangeOfString:@"]"];
+        if ((range1.length == 1) && (range2.length == 1) && (range2.location > range1.location)) {
+            NSRange range3;
+            range3.location = range1.location+1;
+            range3.length = (range2.location - range1.location)-1;
+            NSString *timeStampStr = [lineStr substringWithRange:range3];
+            
+            if(range3.length < lineStr.length-2){
+                NSRange range4;
+                range4.location = range2.location+1;
+                range4.length = (lineStr.length - range4.location);
+                
+                //NSLog(@"range4 loc: %d, len: %d, strlen: %d", range4.location, range4.length, lineStr.length);
+                NSString *lyricStr = [lineStr substringWithRange:range4];
+                
+                if (![lyricStr hasPrefix:@"---"]){
+                    NSNumber *num = timeForKaraokeTimeString(timeStampStr);
+                    NSLog(@"original: %@, parsed: %llu", timeStampStr, num.longLongValue);
+                    [karaokeTimeArr insertObject:num atIndex:counter];
+                    [karaokeLyricArr insertObject:lyricStr atIndex:counter];
+                    
+                    //NSLog(@"line: %@", lyricStr);
+                    counter++;
+                }
+            }
+        }
+        
+    }
+/*
+    NSLog(@"***************************");
+    counter = 0;
+    for(NSString *key in keyArr){
+        NSString *tsCode = [keyArr objectAtIndex:counter];
+        NSString *lyric = [valArr objectAtIndex:counter];
+        
+        NSLog(@"tc: %@ || lyric:%@", tsCode,lyric);
+        counter++;
+    }
+    NSLog(@"***************************");
+    
+    karaokeDictionary =  [[NSDictionary alloc] initWithObjects:valArr forKeys:keyArr];
+*/
+}
 
 /** if you don't do this, the videos will have no sound!!!! **/
 - (void)messWithAudio{
@@ -146,6 +212,7 @@ static int VIDEO_BTN_IDX = 1001;
     }
     
     [self removeTimeObserver];
+    [self removeTimeCodeObserver];
     
     if(self.playerLayer != nil){
         self.playerLayer.opacity = 0.0f;
@@ -153,27 +220,16 @@ static int VIDEO_BTN_IDX = 1001;
     }
 }
 
-/*
--(void)removeVideoEventButton{
-    UIView *v = [self.view viewWithTag:VIDEO_BTN_IDX];
-    v.hidden = YES;
-    [self.view bringSubviewToFront:v];
-    [v removeFromSuperview];
-}
-*/
-
 
 - (void)positionPlayer {
     
-    if (isIPhone){ 
+    if (isIPhone) {
         self.playerLayer.bounds = CGRectMake(0, 0, 640, 300);
         self.playerLayer.position = CGPointMake(260, 150);
-        //[self.vidWait setCenter:CGPointMake(120, 120)];
     }
-    else{ //ipad
+    else { //ipad
         self.playerLayer.bounds = CGRectMake(0, 0, 852, 480);
-        self.playerLayer.position = CGPointMake(520, 382);
-        //[self.vidWait setCenter:CGPointMake(400, 400)];
+        self.playerLayer.position = CGPointMake(520, 322);
     }
     
     self.playerLayer.borderColor = [UIColor blackColor].CGColor;
@@ -185,7 +241,7 @@ static int VIDEO_BTN_IDX = 1001;
 
     self.videoControlView.alpha = 1.0;
 
-    if(isIPhone){
+    if(isIPhone) {
         [self addTouchLayerToVideo];
     }
 }
@@ -206,6 +262,7 @@ static int VIDEO_BTN_IDX = 1001;
 -(void)videoTouched{
     // NSLog(@"video layer touched!");
     [self.videoControlView fadeInControls];
+    [self.karaokeView hide];
 }
 
 
@@ -232,12 +289,46 @@ static int VIDEO_BTN_IDX = 1001;
     self.videoControlView.timeElapsed.text = timeStringForSeconds([self currentTimeInSeconds]);
 }
 
+- (void)updateTimeCode {
+    
+    Float64 dur = CMTimeGetSeconds([self.player currentTime]);
+    NSNumber *milliMovieSec = [NSNumber numberWithUnsignedLongLong:1000*dur];
+    
+    for(int idx = 0; idx < karaokeTimeArr.count; idx++){
+        NSNumber *kTime = [karaokeTimeArr objectAtIndex:idx];
+        if(kTime.longLongValue < milliMovieSec.longLongValue+100 && 
+           kTime.longLongValue > milliMovieSec.longLongValue-100) {
+            NSString *lyric = [karaokeLyricArr objectAtIndex:idx];
+            [self.karaokeView setText:lyric];
+            NSLog(@"ktime:%llu, mtime:%llu, lyric:%@", kTime.longLongValue, milliMovieSec.longLongValue, lyric);
+            break;
+        }
+    }
+}
+
+- (void)updateTimeCodeNearest {
+    
+    Float64 dur = CMTimeGetSeconds([self.player currentTime]);
+    NSNumber *milliMovieSec = [NSNumber numberWithUnsignedLongLong:1000*dur];
+    
+    for(int idx = 0; idx < karaokeTimeArr.count; idx++){
+        NSNumber *kTime = [karaokeTimeArr objectAtIndex:idx];
+        if(kTime.longLongValue > milliMovieSec.longLongValue-100 && idx > 0) {
+            NSString *lyric = [karaokeLyricArr objectAtIndex:idx-1];
+            [self.karaokeView setText:lyric];
+            NSLog(@"ktime:%llu, mtime:%llu, lyric:%@", kTime.longLongValue, milliMovieSec.longLongValue, lyric);
+            break;
+        }
+    }
+}
+
 - (void)checkVideoControlViewFade {
     if(self.videoControlView.alpha == 1.0){
         self.videoControlView.visibleCounter++;
     }
     if( self.videoControlView.visibleCounter > 3 ){
         [self.videoControlView fadeOutControls];
+        [self.karaokeView show];
     }
 }
 
@@ -256,10 +347,8 @@ static int VIDEO_BTN_IDX = 1001;
 }
 
 - (IBAction)startScrubbing:(id)sender {
-	if (self.timeObserver != nil) {
-		[self.player removeTimeObserver:self.timeObserver];
-		self.timeObserver = nil;
-	}
+	[self removeTimeObserver];
+    [self removeTimeCodeObserver];
 	[self.player pause];
     [self.videoControlView togglePlayPauseButton:YES];
 }
@@ -269,7 +358,10 @@ static int VIDEO_BTN_IDX = 1001;
     if(isIPhone){
         [self.videoControlView resetCounter];
     }
+    [self.karaokeView setText:@""];
+    [self updateTimeCodeNearest];
 	[self addTimeObserver];
+    [self addTimeCodeObserver];
     [self.player play];
 }
 
@@ -286,6 +378,30 @@ static NSString *timeStringForSeconds(Float64 seconds) {
 	NSUInteger minutes = seconds / 60;
 	NSUInteger secondsLeftOver = seconds - (minutes * 60);
 	return [NSString stringWithFormat:@"%02ld:%02ld", minutes, secondsLeftOver];
+}
+static NSNumber *timeForKaraokeTimeString(NSString *karaokeStr) {
+    
+    //NSLog(@"Time str: %@", karaokeStr);
+    
+    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+    [f setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSArray *values = [karaokeStr componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@":"]];
+    
+    if(values.count == 2){
+        NSString *frag = [values objectAtIndex:0];
+        NSNumber *minutes = [f numberFromString:frag];
+        NSString *frag2 = [values objectAtIndex:1];
+        NSNumber *seconds = [f numberFromString:frag2];
+        
+        int m = [minutes intValue];
+        Float64 f = [seconds floatValue];
+        
+        CMTime cmtime = CMTimeMakeWithSeconds((m*60)+f, 1000);
+        //return (NSString *)CMTimeCopyDescription(NULL, cmtime);
+        NSNumber *val = [NSNumber numberWithUnsignedLongLong:cmtime.value];
+        return val;
+    }
+    return 0;
 }
 
 static Float64 secondsWithCMTimeOrZeroIfInvalid(CMTime time) {
@@ -316,6 +432,7 @@ static Float64 secondsWithCMTimeOrZeroIfInvalid(CMTime time) {
             [vidWait setHidden:YES];
             
             [self addTimeObserver];
+            [self addTimeCodeObserver];
             self.movieDuration = self.player.currentItem.asset.duration;
 		}
 	}
@@ -339,6 +456,22 @@ static Float64 secondsWithCMTimeOrZeroIfInvalid(CMTime time) {
 	
 }
 
+- (void)addTimeCodeObserver {
+	[self removeTimeCodeObserver];
+	self.timeCodeObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(0.001, 1000) queue:nil usingBlock:^(CMTime time) {
+		[self updateTimeCode];
+	}];
+	
+}
+
+- (void)removeTimeCodeObserver {
+	if (self.timeCodeObserver != nil) {
+		[self.player removeTimeObserver:self.timeCodeObserver];
+		self.timeCodeObserver = nil;
+	}
+}
+
+
 ///////////////////////////
 ///////////////////////////
 ///////////////////////////
@@ -359,6 +492,7 @@ static Float64 secondsWithCMTimeOrZeroIfInvalid(CMTime time) {
 {
     if(isIPhone){
         self.videoControlView.alpha = 0.0f;
+        self.karaokeView.alpha = 1.0f;
     }
     
     [super viewDidLoad];
@@ -384,9 +518,12 @@ static Float64 secondsWithCMTimeOrZeroIfInvalid(CMTime time) {
 
 - (void)dealloc {
     [self removeTimeObserver];
+    [self removeTimeCodeObserver];
     [self.player release];
     [self.playerLayer release];
     [videoControlView release];
+    [karaokeTimeArr release];
+    [karaokeLyricArr release];
     [super dealloc];
 }
 

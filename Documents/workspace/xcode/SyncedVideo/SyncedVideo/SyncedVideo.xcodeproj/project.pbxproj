@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B501D1561563A78D000550D5 /* KaraokeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B501D1551563A78D000550D5 /* KaraokeView.m */; };
+		B501D1581564DEAF000550D5 /* wheels.lrc in Resources */ = {isa = PBXBuildFile; fileRef = B501D1571564DEAF000550D5 /* wheels.lrc */; };
 		B5046A6A1525856B001E258C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5046A691525856B001E258C /* UIKit.framework */; };
 		B5046A6C1525856B001E258C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5046A6B1525856B001E258C /* Foundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		B5046A6E1525856B001E258C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5046A6D1525856B001E258C /* CoreGraphics.framework */; };
@@ -26,7 +28,6 @@
 		B50CAC761535E8630066AC41 /* avatar_144.png in Resources */ = {isa = PBXBuildFile; fileRef = B50CAC751535E8630066AC41 /* avatar_144.png */; };
 		B50DE9F4156174D200535213 /* VideoPlayerViewController-Phone.xib in Resources */ = {isa = PBXBuildFile; fileRef = B50DE9F3156174D200535213 /* VideoPlayerViewController-Phone.xib */; };
 		B50DE9F6156176B800535213 /* header_video_sm.png in Resources */ = {isa = PBXBuildFile; fileRef = B50DE9F5156176B800535213 /* header_video_sm.png */; };
-		B51CEADC1540ED1A008B673D /* froggie_lyrics_01.m4v in Resources */ = {isa = PBXBuildFile; fileRef = B51CEADB1540ED1A008B673D /* froggie_lyrics_01.m4v */; };
 		B530175B155B9051002E7668 /* footer.png in Resources */ = {isa = PBXBuildFile; fileRef = B530175A155B9051002E7668 /* footer.png */; };
 		B530175D155B9105002E7668 /* cartoon.png in Resources */ = {isa = PBXBuildFile; fileRef = B530175C155B9105002E7668 /* cartoon.png */; };
 		B54B8B7B1560DAA500834530 /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B54B8B791560DAA500834530 /* VideoPlayerViewController.m */; };
@@ -39,6 +40,7 @@
 		B5C0FE6315604AC100051E89 /* back_button.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C0FE6215604AC100051E89 /* back_button.png */; };
 		B5C0FE6615604ADB00051E89 /* header_video.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C0FE6415604ADB00051E89 /* header_video.png */; };
 		B5C0FE6715604ADB00051E89 /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C0FE6515604ADB00051E89 /* header.png */; };
+		B5D57CEF1562C41B007C8ABA /* froggie.lrc in Resources */ = {isa = PBXBuildFile; fileRef = B5D57CEE1562C41B007C8ABA /* froggie.lrc */; };
 		B5E606BF155EC6370050C39D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E606BE155EC6370050C39D /* Default.png */; };
 		B5E606C1155EC6530050C39D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E606C0155EC6530050C39D /* Default@2x.png */; };
 		B5E606C8155ED1AF0050C39D /* movie_fastforward.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E606C3155ED1AF0050C39D /* movie_fastforward.png */; };
@@ -52,6 +54,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B501D1541563A78D000550D5 /* KaraokeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KaraokeView.h; sourceTree = "<group>"; };
+		B501D1551563A78D000550D5 /* KaraokeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KaraokeView.m; sourceTree = "<group>"; };
+		B501D1571564DEAF000550D5 /* wheels.lrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wheels.lrc; path = "../../../../../../Desktop/sophie work/video/wheels.lrc"; sourceTree = "<group>"; };
 		B5046A651525856B001E258C /* SyncedVideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyncedVideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5046A691525856B001E258C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B5046A6B1525856B001E258C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -77,7 +82,6 @@
 		B50CAC751535E8630066AC41 /* avatar_144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = avatar_144.png; path = ../avatar_144.png; sourceTree = "<group>"; };
 		B50DE9F3156174D200535213 /* VideoPlayerViewController-Phone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "VideoPlayerViewController-Phone.xib"; sourceTree = "<group>"; };
 		B50DE9F5156176B800535213 /* header_video_sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = header_video_sm.png; path = "../../../../../../Desktop/sophie work/wireframes/header_video_sm.png"; sourceTree = "<group>"; };
-		B51CEADB1540ED1A008B673D /* froggie_lyrics_01.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = froggie_lyrics_01.m4v; sourceTree = "<group>"; };
 		B530175A155B9051002E7668 /* footer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = footer.png; sourceTree = "<group>"; };
 		B530175C155B9105002E7668 /* cartoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cartoon.png; sourceTree = "<group>"; };
 		B54B8B781560DAA500834530 /* VideoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerViewController.h; sourceTree = "<group>"; };
@@ -92,6 +96,7 @@
 		B5C0FE6215604AC100051E89 /* back_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back_button.png; path = "../../../../../../Desktop/sophie work/wireframes/back_button.png"; sourceTree = "<group>"; };
 		B5C0FE6415604ADB00051E89 /* header_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = header_video.png; path = "../../../../../../Desktop/sophie work/wireframes/header_video.png"; sourceTree = "<group>"; };
 		B5C0FE6515604ADB00051E89 /* header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = header.png; path = "../../../../../../Desktop/sophie work/wireframes/header.png"; sourceTree = "<group>"; };
+		B5D57CEE1562C41B007C8ABA /* froggie.lrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = froggie.lrc; path = "../../../../../../Desktop/sophie work/video/froggie.lrc"; sourceTree = "<group>"; };
 		B5E606BE155EC6370050C39D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		B5E606C0155EC6530050C39D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		B5E606C3155ED1AF0050C39D /* movie_fastforward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = movie_fastforward.png; path = "../../../../../../Desktop/sophie work/images/controls/movie_fastforward.png"; sourceTree = "<group>"; };
@@ -162,6 +167,8 @@
 				B54B8B791560DAA500834530 /* VideoPlayerViewController.m */,
 				B55D7CCE155D7692002A2DB2 /* VideoControlView.h */,
 				B55D7CD2155D8A2C002A2DB2 /* VideoControlView.m */,
+				B501D1541563A78D000550D5 /* KaraokeView.h */,
+				B501D1551563A78D000550D5 /* KaraokeView.m */,
 				B5046A701525856B001E258C /* Supporting Files */,
 			);
 			path = SyncedVideo;
@@ -221,7 +228,8 @@
 		B5046A8D1525896A001E258C /* video */ = {
 			isa = PBXGroup;
 			children = (
-				B51CEADB1540ED1A008B673D /* froggie_lyrics_01.m4v */,
+				B501D1571564DEAF000550D5 /* wheels.lrc */,
+				B5D57CEE1562C41B007C8ABA /* froggie.lrc */,
 				B5046A9E15258998001E258C /* wheels.mp4 */,
 				B5046A9F15258998001E258C /* froggie-sophie.mp4 */,
 			);
@@ -305,7 +313,6 @@
 				B50CAC741535E8070066AC41 /* avatar_114.png in Resources */,
 				B50CAC761535E8630066AC41 /* avatar_144.png in Resources */,
 				B575A2CB1540DF3900349E74 /* cork_board_1000x800.jpg in Resources */,
-				B51CEADC1540ED1A008B673D /* froggie_lyrics_01.m4v in Resources */,
 				B530175B155B9051002E7668 /* footer.png in Resources */,
 				B530175D155B9105002E7668 /* cartoon.png in Resources */,
 				B55D7CBF155CE717002A2DB2 /* cork_board_wide.png in Resources */,
@@ -324,6 +331,8 @@
 				B54B8B7C1560DAA500834530 /* VideoPlayerViewController.xib in Resources */,
 				B50DE9F4156174D200535213 /* VideoPlayerViewController-Phone.xib in Resources */,
 				B50DE9F6156176B800535213 /* header_video_sm.png in Resources */,
+				B5D57CEF1562C41B007C8ABA /* froggie.lrc in Resources */,
+				B501D1581564DEAF000550D5 /* wheels.lrc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +348,7 @@
 				B5046A831525856B001E258C /* SyncedVideoViewController.m in Sources */,
 				B55D7CD3155D8A2C002A2DB2 /* VideoControlView.m in Sources */,
 				B54B8B7B1560DAA500834530 /* VideoPlayerViewController.m in Sources */,
+				B501D1561563A78D000550D5 /* KaraokeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
