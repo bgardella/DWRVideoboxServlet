@@ -11,6 +11,7 @@
 @implementation KaraokeView
 
 @synthesize karaokeText;
+@synthesize isIPhone;
 
 /*
  // Only override drawRect: if you perform custom drawing.
@@ -24,6 +25,37 @@
 
 - (void)setText:(NSString *)text{
     [karaokeText setText:text];
+}
+
+- (void)slideOut{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationDelay:0.3];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    
+    NSLog(@"kview center.x:%f center.y:%f", self.center.x, self.center.y);
+    
+    if(self.isIPhone){
+        self.center = CGPointMake(240, 321);
+    }else {
+        self.center = CGPointMake(512, 800);
+    }
+    
+    [UIView commitAnimations];
+}
+
+- (void)slideIn{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationDelay:0.3];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    if(self.isIPhone){
+        self.center = CGPointMake(240, 281);
+    }else {
+        self.center = CGPointMake(512, 709);
+    }
+    
+    [UIView commitAnimations];
 }
 
 - (void)hide{
@@ -55,11 +87,13 @@
 /////////////////////////
 
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    
+    if(self = [super initWithCoder:aDecoder]){
+        if (self) {
+            // Initialization code
+            self.isIPhone = UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad;
+        }
     }
     return self;
 }

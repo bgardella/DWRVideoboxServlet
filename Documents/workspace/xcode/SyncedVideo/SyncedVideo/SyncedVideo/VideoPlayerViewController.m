@@ -30,6 +30,17 @@ static int VIDEO_BTN_IDX = 1001;
 
 @synthesize isIPhone;
 
+- (IBAction)kViewButtonPressed:(id)sender {
+    
+    if(isIPhone && karaokeView.center.y == 321){
+        [karaokeView slideIn];
+    }else if(karaokeView.center.y == 800){
+        [karaokeView slideIn];
+    }else {
+        [karaokeView slideOut];
+    }
+}
+
 
 - (IBAction)flipToHomeView:(id)sender {
     
@@ -101,6 +112,8 @@ static int VIDEO_BTN_IDX = 1001;
     
     [self.playerLayer setHidden:YES];
     
+    [self.karaokeView setText:@""];
+    [self.karaokeView slideOut];
     [self.view bringSubviewToFront:self.karaokeView];
     [self.view bringSubviewToFront:self.videoControlView];    
     [self.videoControlView togglePlayPauseButton:(YES)];
@@ -220,6 +233,17 @@ static int VIDEO_BTN_IDX = 1001;
     }
 }
 
+- (IBAction)toggleFullScreen:(id)sender{
+    if (!isIPhone) {
+        if(self.playerLayer.bounds.size.width == 852){
+            self.playerLayer.bounds = CGRectMake(0, 0, 1024, 577);
+            self.playerLayer.position = CGPointMake(512, 374);
+        }else {
+            self.playerLayer.bounds = CGRectMake(0, 0, 852, 480);
+            self.playerLayer.position = CGPointMake(520, 322);
+        }
+    }
+}
 
 - (void)positionPlayer {
     
@@ -228,17 +252,18 @@ static int VIDEO_BTN_IDX = 1001;
         self.playerLayer.position = CGPointMake(260, 150);
     }
     else { //ipad
-        self.playerLayer.bounds = CGRectMake(0, 0, 852, 480);
+        self.playerLayer.bounds = CGRectMake(0, 0, 852, 480); //start windowed-view
         self.playerLayer.position = CGPointMake(520, 322);
     }
     
-    self.playerLayer.borderColor = [UIColor blackColor].CGColor;
-    self.playerLayer.borderWidth = 8.0;
+    self.playerLayer.borderColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6].CGColor;
+    self.playerLayer.borderWidth = 2.0;
+    /* 
     self.playerLayer.backgroundColor = [UIColor blackColor].CGColor;
 	self.playerLayer.shadowOffset = CGSizeMake(0, 3);
 	self.playerLayer.shadowOpacity = 0.80;
     self.playerLayer.opacity = 1.0;
-
+    */
     self.videoControlView.alpha = 1.0;
 
     if(isIPhone) {
@@ -434,6 +459,7 @@ static Float64 secondsWithCMTimeOrZeroIfInvalid(CMTime time) {
             [self addTimeObserver];
             [self addTimeCodeObserver];
             self.movieDuration = self.player.currentItem.asset.duration;
+            [self.karaokeView slideIn];
 		}
 	}
 }
