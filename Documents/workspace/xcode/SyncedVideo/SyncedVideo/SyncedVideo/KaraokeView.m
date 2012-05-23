@@ -22,6 +22,16 @@
  }
  */
 
+static float Y_PHONE_BOTTOM     = 321;
+static float Y_PHONE_MIDDLE     = 301;
+static float Y_PHONE_TOP        = 281;
+
+static float Y_PAD_BOTTOM       = 770;
+static float Y_PAD_MIDDLE       = 740;
+static float Y_PAD_TOP          = 709;
+
+static float X_PHONE_CENTER     = 240;
+static float X_PAD_CENTER       = 512;
 
 - (void)setText:(NSString *)text{
     [karaokeText setText:text];
@@ -36,9 +46,9 @@
     NSLog(@"kview center.x:%f center.y:%f", self.center.x, self.center.y);
     
     if(self.isIPhone){
-        self.center = CGPointMake(240, 321);
+        self.center = CGPointMake(X_PHONE_CENTER, Y_PHONE_BOTTOM);
     }else {
-        self.center = CGPointMake(512, 770);
+        self.center = CGPointMake(X_PAD_CENTER, Y_PAD_BOTTOM);
     }
     
     [UIView commitAnimations];
@@ -50,12 +60,42 @@
     [UIView setAnimationDelay:0.3];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
     if(self.isIPhone){
-        self.center = CGPointMake(240, 281);
+        self.center = CGPointMake(X_PHONE_CENTER, Y_PHONE_TOP);
     }else {
-        self.center = CGPointMake(512, 709);
+        self.center = CGPointMake(X_PAD_CENTER, Y_PAD_TOP);
     }
     
     [UIView commitAnimations];
+}
+
+- (void)dragMove:(float)yPoint{
+    
+    if(!self.isIPhone && yPoint<=Y_PAD_BOTTOM && yPoint>=Y_PAD_TOP){
+        self.center = CGPointMake(self.center.x, yPoint);
+        //NSLog(@"Dragging bar y:%f", yPoint);
+    }else if(yPoint<=Y_PHONE_BOTTOM && yPoint>=Y_PHONE_TOP){
+        self.center = CGPointMake(self.center.x, yPoint);
+        //NSLog(@"Dragging bar y:%f", yPoint);
+    }
+}
+
+- (void)dragFinished:(float)yPoint{
+    //NSLog(@"Drag bar finished y:%f", yPoint);
+    
+    if(!self.isIPhone){
+        if(yPoint>=Y_PAD_MIDDLE){
+            self.center = CGPointMake(self.center.x, Y_PAD_BOTTOM);
+        }else{
+            self.center = CGPointMake(self.center.x, Y_PAD_TOP);
+        }
+    }else {
+        if(yPoint>=Y_PHONE_MIDDLE){
+            self.center = CGPointMake(self.center.x, Y_PHONE_BOTTOM);
+        }else{
+            self.center = CGPointMake(self.center.x, Y_PHONE_TOP);
+        }
+    }
+    
 }
 
 - (void)hide{

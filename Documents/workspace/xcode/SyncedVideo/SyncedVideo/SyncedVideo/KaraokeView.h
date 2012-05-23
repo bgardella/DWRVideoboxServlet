@@ -23,5 +23,8 @@
 - (void)show;
 - (void)slideOut;
 - (void)slideIn;
+- (void)dragMove:(float)yPoint;
+- (void)dragFinished:(float)yPoint;
+
 
 @end

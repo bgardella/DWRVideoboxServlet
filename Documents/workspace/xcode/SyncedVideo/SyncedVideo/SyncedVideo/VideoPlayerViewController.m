@@ -36,10 +36,7 @@ static int VIDEO_BTN_IDX = 1001;
     CGPoint point = [[[event allTouches] anyObject] locationInView:btn];
     float yPoint = karaokeView.center.y+point.y;
     
-    if(yPoint<=770 && yPoint>=709){
-        karaokeView.center = CGPointMake(karaokeView.center.x, yPoint);
-        //NSLog(@"Dragging bar y:%f", yPoint);
-    }
+    [karaokeView dragMove:yPoint];
 }
 
 - (IBAction)kViewDragButtonFinished:(id)sender withEvent:(UIEvent *) event{
@@ -48,12 +45,7 @@ static int VIDEO_BTN_IDX = 1001;
     CGPoint point = [[[event allTouches] anyObject] locationInView:btn];
     float yPoint = karaokeView.center.y+point.y;
     
-    //NSLog(@"Drag bar finished y:%f", yPoint);
-    if(yPoint>=740){
-        karaokeView.center = CGPointMake(karaokeView.center.x, 770);
-    }else{
-        karaokeView.center = CGPointMake(karaokeView.center.x, 709);
-    }
+    [karaokeView dragFinished:yPoint];
 }
 
 - (IBAction)flipToHomeView:(id)sender {
@@ -251,7 +243,7 @@ static int VIDEO_BTN_IDX = 1001;
     if (!isIPhone) {
         if(self.playerLayer.bounds.size.width == 852){
             self.playerLayer.bounds = CGRectMake(0, 0, 1024, 577);
-            self.playerLayer.position = CGPointMake(512, 374);
+            self.playerLayer.position = CGPointMake(512, 354);
         }else {
             self.playerLayer.bounds = CGRectMake(0, 0, 852, 480);
             self.playerLayer.position = CGPointMake(520, 322);

@@ -331,7 +331,7 @@
 								<reference key="IBUIFont" ref="286317527"/>
 							</object>
 						</array>
-						<string key="NSFrame">{{311, 569}, {402, 76}}</string>
+						<string key="NSFrame">{{311, 611}, {402, 76}}</string>
 						<reference key="NSSuperview" ref="357991146"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="363324686"/>
@@ -400,7 +400,6 @@
 								<string key="NSFrame">{{986, 0}, {36, 29}}</string>
 								<reference key="NSSuperview" ref="27904164"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>

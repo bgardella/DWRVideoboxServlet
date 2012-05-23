@@ -58,10 +58,24 @@
 						<reference key="NSNextResponder" ref="571115957"/>
 						<int key="NSvFlags">292</int>
 						<array class="NSMutableArray" key="NSSubviews">
+							<object class="IBUIImageView" id="54000977">
+								<reference key="NSNextResponder" ref="354346348"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{0, -8}, {483, 124}}</string>
+								<reference key="NSSuperview" ref="354346348"/>
+								<reference key="NSWindow"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">karaoke_panel.png</string>
+								</object>
+							</object>
 							<object class="IBUILabel" id="953194774">
 								<reference key="NSNextResponder" ref="354346348"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 0}, {445, 68}}</string>
+								<string key="NSFrame">{{20, 12}, {445, 56}}</string>
 								<reference key="NSSuperview" ref="354346348"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -70,7 +84,7 @@
 								<int key="IBUIContentMode">5</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText"/>
+								<string key="IBUIText">zcsdadafsdfsdf</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -82,15 +96,16 @@
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUITextAlignment">1</int>
+								<int key="IBUILineBreakMode">2</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<string key="name">Noteworthy-Light</string>
 									<string key="family">Noteworthy</string>
 									<int key="traits">0</int>
-									<double key="pointSize">43</double>
+									<double key="pointSize">32</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Noteworthy-Light</string>
-									<double key="NSSize">43</double>
+									<double key="NSSize">32</double>
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
@@ -105,7 +120,6 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">Close Button</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor" id="865098209">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
@@ -118,10 +132,6 @@
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
-								<object class="NSCustomResource" key="IBUINormalImage" id="607784552">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">close-button.png</string>
-								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="213000968">
 									<int key="type">2</int>
 									<double key="pointSize">15</double>
@@ -133,14 +143,10 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrame">{{0, 242}, {480, 78}}</string>
+						<string key="NSFrame">{{0, 226}, {480, 93}}</string>
 						<reference key="NSSuperview" ref="571115957"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MAA</bytes>
-						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 					<object class="IBUIView" id="952194745">
@@ -396,28 +402,6 @@
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
-					<object class="IBUIButton" id="769487589">
-						<reference key="NSNextResponder" ref="571115957"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{442, 289}, {38, 35}}</string>
-						<reference key="NSSuperview" ref="571115957"/>
-						<reference key="NSWindow"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">Close Button</string>
-						<reference key="IBUIHighlightedTitleColor" ref="865098209"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="65895504"/>
-						<reference key="IBUINormalImage" ref="607784552"/>
-						<reference key="IBUIFontDescription" ref="213000968"/>
-						<reference key="IBUIFont" ref="131689444"/>
-					</object>
 				</array>
 				<string key="NSFrameSize">{480, 320}</string>
 				<reference key="NSSuperview"/>
@@ -576,21 +560,21 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">kViewButtonPressed:</string>
+						<string key="label">kViewDragButtonFinished:withEvent:</string>
 						<reference key="source" ref="1017165594"/>
 						<reference key="destination" ref="841351856"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">67</int>
+					<int key="connectionID">71</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">kViewButtonPressed:</string>
-						<reference key="source" ref="769487589"/>
+						<string key="label">kViewDragButtonPressed:withEvent:</string>
+						<reference key="source" ref="1017165594"/>
 						<reference key="destination" ref="841351856"/>
-						<int key="IBEventType">7</int>
+						<int key="IBEventType">3</int>
 					</object>
-					<int key="connectionID">69</int>
+					<int key="connectionID">72</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -619,7 +603,6 @@
 							<reference ref="853752026"/>
 							<reference ref="354346348"/>
 							<reference ref="952194745"/>
-							<reference ref="769487589"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">videoView</string>
@@ -635,6 +618,7 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="953194774"/>
 							<reference ref="1017165594"/>
+							<reference ref="54000977"/>
 						</array>
 						<reference key="parent" ref="571115957"/>
 					</object>
@@ -736,10 +720,9 @@
 						<reference key="parent" ref="952194745"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">68</int>
-						<reference key="object" ref="769487589"/>
-						<reference key="parent" ref="571115957"/>
-						<string key="objectName">Close Button</string>
+						<int key="objectID">70</int>
+						<reference key="object" ref="54000977"/>
+						<reference key="parent" ref="354346348"/>
 					</object>
 				</array>
 			</object>
@@ -769,13 +752,13 @@
 				<string key="62.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="63.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="66.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="68.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="70.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">69</int>
+			<int key="maxID">72</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -845,20 +828,26 @@
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="flipToHomeView:">id</string>
-						<string key="kViewButtonPressed:">id</string>
+						<string key="kViewDragButtonFinished:withEvent:">id</string>
+						<string key="kViewDragButtonPressed:withEvent:">id</string>
 						<string key="pauseAVPlayer:">id</string>
 						<string key="restartAVPlayer:">id</string>
 						<string key="scrubValueChanged:">id</string>
 						<string key="startScrubbing:">id</string>
 						<string key="stopScrubbing:">id</string>
+						<string key="toggleFullScreen:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="flipToHomeView:">
 							<string key="name">flipToHomeView:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="kViewButtonPressed:">
-							<string key="name">kViewButtonPressed:</string>
+						<object class="IBActionInfo" key="kViewDragButtonFinished:withEvent:">
+							<string key="name">kViewDragButtonFinished:withEvent:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="kViewDragButtonPressed:withEvent:">
+							<string key="name">kViewDragButtonPressed:withEvent:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="pauseAVPlayer:">
@@ -879,6 +868,10 @@
 						</object>
 						<object class="IBActionInfo" key="stopScrubbing:">
 							<string key="name">stopScrubbing:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="toggleFullScreen:">
+							<string key="name">toggleFullScreen:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
@@ -918,10 +911,10 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="back_button.png">{98, 58}</string>
-			<string key="close-button.png">{40, 40}</string>
 			<string key="control_panel.png">{399, 73}</string>
 			<string key="cork_board_wide.png">{1890, 745}</string>
 			<string key="header_video_sm.png">{460, 45}</string>
+			<string key="karaoke_panel.png">{1024, 103}</string>
 			<string key="movie_pause.png">{60, 60}</string>
 			<string key="movie_play.png">{60, 60}</string>
 		</dictionary>
