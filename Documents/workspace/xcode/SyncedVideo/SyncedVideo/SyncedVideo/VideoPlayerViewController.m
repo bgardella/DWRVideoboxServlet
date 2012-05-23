@@ -30,17 +30,31 @@ static int VIDEO_BTN_IDX = 1001;
 
 @synthesize isIPhone;
 
-- (IBAction)kViewButtonPressed:(id)sender {
+- (IBAction)kViewDragButtonPressed:(id)sender withEvent:(UIEvent *) event{
+
+    UIButton *btn = (UIButton *)sender;
+    CGPoint point = [[[event allTouches] anyObject] locationInView:btn];
+    float yPoint = karaokeView.center.y+point.y;
     
-    if(isIPhone && karaokeView.center.y == 321){
-        [karaokeView slideIn];
-    }else if(karaokeView.center.y == 800){
-        [karaokeView slideIn];
-    }else {
-        [karaokeView slideOut];
+    if(yPoint<=770 && yPoint>=709){
+        karaokeView.center = CGPointMake(karaokeView.center.x, yPoint);
+        //NSLog(@"Dragging bar y:%f", yPoint);
     }
 }
 
+- (IBAction)kViewDragButtonFinished:(id)sender withEvent:(UIEvent *) event{
+    
+    UIButton *btn = (UIButton *)sender;
+    CGPoint point = [[[event allTouches] anyObject] locationInView:btn];
+    float yPoint = karaokeView.center.y+point.y;
+    
+    //NSLog(@"Drag bar finished y:%f", yPoint);
+    if(yPoint>=740){
+        karaokeView.center = CGPointMake(karaokeView.center.x, 770);
+    }else{
+        karaokeView.center = CGPointMake(karaokeView.center.x, 709);
+    }
+}
 
 - (IBAction)flipToHomeView:(id)sender {
     

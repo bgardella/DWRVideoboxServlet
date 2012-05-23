@@ -38,7 +38,7 @@
     if(self.isIPhone){
         self.center = CGPointMake(240, 321);
     }else {
-        self.center = CGPointMake(512, 800);
+        self.center = CGPointMake(512, 770);
     }
     
     [UIView commitAnimations];

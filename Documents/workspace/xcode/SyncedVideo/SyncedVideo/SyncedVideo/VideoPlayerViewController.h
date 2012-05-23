@@ -60,7 +60,8 @@ static void *AVSPPlayerLayerReadyForDisplay = &AVSPPlayerLayerReadyForDisplay;
 
 
 - (IBAction)flipToHomeView:(id)sender;
-- (IBAction)kViewButtonPressed:(id)sender;
+- (IBAction)kViewDragButtonPressed:(id)sender withEvent:(UIEvent *) event;
+- (IBAction)kViewDragButtonFinished:(id)sender withEvent:(UIEvent *) event;
 - (IBAction)toggleFullScreen:(id)sender;
 
 - (void)playThatLayer:(NSString*)input
