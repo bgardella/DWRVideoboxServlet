@@ -12,6 +12,7 @@
 
 @synthesize karaokeText;
 @synthesize isIPhone;
+@synthesize karaokeScreen;
 
 /*
  // Only override drawRect: if you perform custom drawing.
@@ -33,8 +34,50 @@ static float Y_PAD_TOP          = 709;
 static float X_PHONE_CENTER     = 240;
 static float X_PAD_CENTER       = 512;
 
+static float Y_PAD_TEXT_TOP     = 26;
+static float Y_PAD_TEXT_HEIGHT  = 58;
+static float Y_PHONE_TEXT_TOP   = 16;
+
 - (void)setText:(NSString *)text{
     [karaokeText setText:text];
+    
+    
+    CGSize fontSize = [karaokeText.text sizeWithFont:karaokeText.font];
+    //NSLog(@"ktext width:%f", fontSize.width);
+    
+    if(text.length > 2){
+        [self resetScreen:fontSize];
+    }else{
+        [karaokeScreen setAlpha:0.0];
+    }
+}
+
+- (void)resetScreen:(CGSize)fontSize{
+
+    float xAnchor = 0;
+    if(isIPhone){
+        xAnchor = X_PHONE_CENTER-(fontSize.width/2);
+        [karaokeScreen setBounds:CGRectMake(xAnchor, Y_PHONE_TEXT_TOP, 0, Y_PAD_TEXT_HEIGHT)];
+    }else{
+        xAnchor = X_PAD_CENTER-(fontSize.width/2);
+        [karaokeScreen setBounds:CGRectMake(xAnchor, Y_PAD_TEXT_TOP, 0, Y_PAD_TEXT_HEIGHT)];
+    }
+    float xMaxWidth = fontSize.width+10;
+    
+    CGRect bounds = karaokeScreen.bounds;
+    karaokeScreen.layer.anchorPoint = CGPointMake(0, 0.5);
+    karaokeScreen.center = CGPointMake(xAnchor,Y_PAD_TEXT_HEIGHT);
+    [karaokeScreen setAlpha:0.5];
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:2.5];
+    [UIView setAnimationDelay:0.1];
+    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+   
+    bounds.size.width = xMaxWidth;
+    [karaokeScreen setBounds:bounds];
+    
+    [UIView commitAnimations];
 }
 
 - (void)slideOut{

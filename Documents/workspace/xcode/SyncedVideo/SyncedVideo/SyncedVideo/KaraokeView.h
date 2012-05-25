@@ -13,10 +13,12 @@
 @private
     UILabel *karaokeText;
     BOOL isIPhone;
+    UIView *karaokeScreen;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *karaokeText;
 @property (nonatomic, assign) BOOL isIPhone;
+@property (nonatomic, retain) IBOutlet UIView *karaokeScreen;
 
 - (void)setText:(NSString *)text;
 - (void)hide;
