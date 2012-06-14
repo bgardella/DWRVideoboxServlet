@@ -3,7 +3,7 @@
 //  SyncedVideo
 //
 //  Created by Ben Gardella on 5/16/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Emmett's Older Brother Prod. All rights reserved.
 //
 
 #import "KaraokeView.h"
@@ -41,7 +41,7 @@ static float Y_PHONE_TEXT_TOP   = 16;
 - (void)setText:(NSString *)text{
     [karaokeText setText:text];
     
-    
+    /*
     CGSize fontSize = [karaokeText.text sizeWithFont:karaokeText.font];
     //NSLog(@"ktext width:%f", fontSize.width);
     
@@ -50,6 +50,7 @@ static float Y_PHONE_TEXT_TOP   = 16;
     }else{
         [karaokeScreen setAlpha:0.0];
     }
+     */
 }
 
 - (void)resetScreen:(CGSize)fontSize{
@@ -168,6 +169,12 @@ static float Y_PHONE_TEXT_TOP   = 16;
 /////////////////////////
 /////////////////////////
 /////////////////////////
+
+- (void)drawRect:(CGRect)rect
+{
+	CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSetBlendMode(ctx, kCGBlendModeCopy);
+}
 
 
 - (id)initWithCoder:(NSCoder *)aDecoder {

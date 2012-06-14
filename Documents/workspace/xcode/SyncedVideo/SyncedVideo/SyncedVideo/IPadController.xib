@@ -57,7 +57,7 @@
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">cork_board_wide.png</string>
+									<string key="NSResourceName">cork_board_seemless.png</string>
 								</object>
 							</object>
 							<object class="IBUIButton" id="1064533183">
@@ -137,7 +137,7 @@
 							<object class="IBUIButton" id="634842252">
 								<reference key="NSNextResponder" ref="12589924"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{1028, 82}, {300, 300}}</string>
+								<string key="NSFrame">{{616, 82}, {300, 300}}</string>
 								<reference key="NSSuperview" ref="12589924"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="817084296"/>
@@ -161,7 +161,7 @@
 							<object class="IBUILabel" id="817084296">
 								<reference key="NSNextResponder" ref="12589924"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{1078, 166}, {200, 105}}</string>
+								<string key="NSFrame">{{666, 166}, {200, 105}}</string>
 								<reference key="NSSuperview" ref="12589924"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="104669160"/>
@@ -257,6 +257,31 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">cartoon.png</string>
 						</object>
+					</object>
+					<object class="IBUIButton" id="256270650">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{848, 563}, {143, 23}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<int key="IBUIButtonType">1</int>
+						<string key="IBUINormalTitle">Buy More Songs</string>
+						<reference key="IBUIHighlightedTitleColor" ref="394863200"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="949622799"/>
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
+							<int key="type">2</int>
+							<double key="pointSize">15</double>
+						</object>
+						<reference key="IBUIFont" ref="86683676"/>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {1024, 748}}</string>
@@ -357,6 +382,7 @@
 							<reference ref="12589924"/>
 							<reference ref="530271234"/>
 							<reference ref="104669160"/>
+							<reference ref="256270650"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">homeView</string>
@@ -398,10 +424,10 @@
 						<reference key="object" ref="12589924"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="599795021"/>
-							<reference ref="817084296"/>
-							<reference ref="634842252"/>
 							<reference ref="1064533183"/>
 							<reference ref="884029014"/>
+							<reference ref="634842252"/>
+							<reference ref="817084296"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -431,6 +457,11 @@
 						<reference key="parent" ref="12589924"/>
 						<string key="objectName">bgView</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">99</int>
+						<reference key="object" ref="256270650"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -453,12 +484,13 @@
 				<real value="2" key="5.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="5.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="99.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">98</int>
+			<int key="maxID">99</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -468,6 +500,7 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="changePage:">id</string>
 						<string key="flipToVideoView:">id</string>
+						<string key="makePurchase:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="changePage:">
@@ -476,6 +509,10 @@
 						</object>
 						<object class="IBActionInfo" key="flipToVideoView:">
 							<string key="name">flipToVideoView:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="makePurchase:">
+							<string key="name">makePurchase:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
@@ -510,7 +547,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="cartoon.png">{157, 265}</string>
-			<string key="cork_board_wide.png">{1890, 745}</string>
+			<string key="cork_board_seemless.png">{1890, 745}</string>
 			<string key="footer.png">{960, 99}</string>
 			<string key="header.png">{960, 149}</string>
 			<string key="post_it_big.png">{350, 328}</string>

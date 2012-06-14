@@ -40,6 +40,9 @@
 		B564D5D1156CA4FE00E53258 /* karaoke_panel.png in Resources */ = {isa = PBXBuildFile; fileRef = B564D5D0156CA4FE00E53258 /* karaoke_panel.png */; };
 		B5716E751567846100616429 /* fullscreen_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = B5716E741567846100616429 /* fullscreen_btn.png */; };
 		B575A2CB1540DF3900349E74 /* cork_board_1000x800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B575A2CA1540DF3900349E74 /* cork_board_1000x800.jpg */; };
+		B5BF20911587AAB800120BE4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5BF20901587AAB800120BE4 /* StoreKit.framework */; };
+		B5BF2093158858E400120BE4 /* cork_board_seemless.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BF2092158858E400120BE4 /* cork_board_seemless.png */; };
+		B5BF209615885BA900120BE4 /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BF209515885BA900120BE4 /* InAppPurchaseManager.m */; };
 		B5C0FE61156047E400051E89 /* control_panel.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C0FE60156047E400051E89 /* control_panel.png */; };
 		B5C0FE6315604AC100051E89 /* back_button.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C0FE6215604AC100051E89 /* back_button.png */; };
 		B5C0FE6615604ADB00051E89 /* header_video.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C0FE6415604ADB00051E89 /* header_video.png */; };
@@ -100,6 +103,10 @@
 		B564D5D0156CA4FE00E53258 /* karaoke_panel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = karaoke_panel.png; sourceTree = "<group>"; };
 		B5716E741567846100616429 /* fullscreen_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fullscreen_btn.png; path = "../../../../../../Desktop/sophie work/wireframes/fullscreen_btn.png"; sourceTree = "<group>"; };
 		B575A2CA1540DF3900349E74 /* cork_board_1000x800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cork_board_1000x800.jpg; sourceTree = "<group>"; };
+		B5BF20901587AAB800120BE4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		B5BF2092158858E400120BE4 /* cork_board_seemless.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cork_board_seemless.png; sourceTree = "<group>"; };
+		B5BF209415885BA900120BE4 /* InAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseManager.h; sourceTree = "<group>"; };
+		B5BF209515885BA900120BE4 /* InAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseManager.m; sourceTree = "<group>"; };
 		B5C0FE60156047E400051E89 /* control_panel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = control_panel.png; path = "../../../../../../Desktop/sophie work/wireframes/control_panel.png"; sourceTree = "<group>"; };
 		B5C0FE6215604AC100051E89 /* back_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back_button.png; path = "../../../../../../Desktop/sophie work/wireframes/back_button.png"; sourceTree = "<group>"; };
 		B5C0FE6415604ADB00051E89 /* header_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = header_video.png; path = "../../../../../../Desktop/sophie work/wireframes/header_video.png"; sourceTree = "<group>"; };
@@ -122,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5BF20911587AAB800120BE4 /* StoreKit.framework in Frameworks */,
 				B5046A6C1525856B001E258C /* Foundation.framework in Frameworks */,
 				B5046A6A1525856B001E258C /* UIKit.framework in Frameworks */,
 				B5046A6E1525856B001E258C /* CoreGraphics.framework in Frameworks */,
@@ -154,6 +162,7 @@
 		B5046A681525856B001E258C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5BF20901587AAB800120BE4 /* StoreKit.framework */,
 				B5E606D1155F2F9A0050C39D /* CoreMedia.framework */,
 				B5046AAD15259D12001E258C /* AVFoundation.framework */,
 				B5046A89152588F8001E258C /* MediaPlayer.framework */,
@@ -177,6 +186,8 @@
 				B55D7CD2155D8A2C002A2DB2 /* VideoControlView.m */,
 				B501D1541563A78D000550D5 /* KaraokeView.h */,
 				B501D1551563A78D000550D5 /* KaraokeView.m */,
+				B5BF209415885BA900120BE4 /* InAppPurchaseManager.h */,
+				B5BF209515885BA900120BE4 /* InAppPurchaseManager.m */,
 				B5046A701525856B001E258C /* Supporting Files */,
 			);
 			path = SyncedVideo;
@@ -212,6 +223,7 @@
 		B5046A8C1525895F001E258C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				B5BF2092158858E400120BE4 /* cork_board_seemless.png */,
 				B564D5D0156CA4FE00E53258 /* karaoke_panel.png */,
 				B564D5CE156CA05100E53258 /* drag_handle.png */,
 				B564D5CC156CA01600E53258 /* close-button.png */,
@@ -349,6 +361,7 @@
 				B564D5CD156CA01600E53258 /* close-button.png in Resources */,
 				B564D5CF156CA05100E53258 /* drag_handle.png in Resources */,
 				B564D5D1156CA4FE00E53258 /* karaoke_panel.png in Resources */,
+				B5BF2093158858E400120BE4 /* cork_board_seemless.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +378,7 @@
 				B55D7CD3155D8A2C002A2DB2 /* VideoControlView.m in Sources */,
 				B54B8B7B1560DAA500834530 /* VideoPlayerViewController.m in Sources */,
 				B501D1561563A78D000550D5 /* KaraokeView.m in Sources */,
+				B5BF209615885BA900120BE4 /* InAppPurchaseManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

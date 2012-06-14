@@ -51,7 +51,7 @@
 							<object class="IBUIImageView" id="248015041">
 								<reference key="NSNextResponder" ref="913129955"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{-7, -80}, {740, 319}}</string>
+								<string key="NSFrame">{{-26, -86}, {740, 319}}</string>
 								<reference key="NSSuperview" ref="913129955"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="570210939"/>
@@ -60,7 +60,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">cork_board_wide.png</string>
+									<string key="NSResourceName">cork_board_seemless.png</string>
 								</object>
 							</object>
 							<object class="IBUIButton" id="648188578">
@@ -249,6 +249,31 @@
 							<string key="NSResourceName">cartoon.png</string>
 						</object>
 					</object>
+					<object class="IBUIButton" id="590942098">
+						<reference key="NSNextResponder" ref="774585933"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{317, 192}, {143, 23}}</string>
+						<reference key="NSSuperview" ref="774585933"/>
+						<reference key="NSWindow"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<int key="IBUIButtonType">1</int>
+						<string key="IBUINormalTitle">Buy More Songs</string>
+						<reference key="IBUIHighlightedTitleColor" ref="537291974"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="509112054"/>
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
+							<int key="type">2</int>
+							<double key="pointSize">15</double>
+						</object>
+						<reference key="IBUIFont" ref="933159522"/>
+					</object>
 				</object>
 				<string key="NSFrame">{{0, 20}, {480, 300}}</string>
 				<reference key="NSSuperview"/>
@@ -362,6 +387,7 @@
 							<reference ref="857344400"/>
 							<reference ref="913129955"/>
 							<reference ref="587287781"/>
+							<reference ref="590942098"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">homeView</string>
@@ -425,6 +451,11 @@
 						<reference key="object" ref="587287781"/>
 						<reference key="parent" ref="774585933"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">68</int>
+						<reference key="object" ref="590942098"/>
+						<reference key="parent" ref="774585933"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -448,6 +479,7 @@
 					<string>40.IBPluginDependency</string>
 					<string>6.IBPluginDependency</string>
 					<string>64.IBPluginDependency</string>
+					<string>68.IBPluginDependency</string>
 					<string>8.IBPluginDependency</string>
 					<string>8.IBUIButtonInspectorSelectedEdgeInsetMetadataKey</string>
 					<string>8.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
@@ -476,6 +508,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<real value="2"/>
 					<real value="0.0"/>
 				</object>
@@ -492,7 +525,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">67</int>
+			<int key="maxID">68</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -505,7 +538,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>changePage:</string>
-							<string>flipToVideoView:</string>
+							<string>makePurchase:</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -518,7 +551,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>changePage:</string>
-							<string>flipToVideoView:</string>
+							<string>makePurchase:</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -527,40 +560,8 @@
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
-								<string key="name">flipToVideoView:</string>
+								<string key="name">makePurchase:</string>
 								<string key="candidateClassName">id</string>
-							</object>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="outlets">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>pageControl</string>
-							<string>scrollView</string>
-						</object>
-						<object class="NSArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>UIPageControl</string>
-							<string>UIScrollView</string>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>pageControl</string>
-							<string>scrollView</string>
-						</object>
-						<object class="NSArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBToOneOutletInfo">
-								<string key="name">pageControl</string>
-								<string key="candidateClassName">UIPageControl</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">scrollView</string>
-								<string key="candidateClassName">UIScrollView</string>
 							</object>
 						</object>
 					</object>
@@ -588,7 +589,7 @@
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>cartoon.png</string>
-				<string>cork_board_wide.png</string>
+				<string>cork_board_seemless.png</string>
 				<string>footer.png</string>
 				<string>header.png</string>
 				<string>post_it_big.png</string>

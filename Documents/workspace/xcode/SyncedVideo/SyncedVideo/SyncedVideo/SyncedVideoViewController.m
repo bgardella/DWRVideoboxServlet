@@ -3,15 +3,19 @@
 //  SyncedVideo
 //
 //  Created by Ben Gardella on 3/29/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Emmett's Older Brother Prod. All rights reserved.
 //
 
 #import "SyncedVideoViewController.h"
 #import "SyncedVideoAppDelegate.h"
 #import "VideoPlayerViewController.h"
 
+
 @implementation SyncedVideoViewController
 
+-(IBAction)makePurchase:(id)sender{
+    //call manager singleton
+}
 
 
 
@@ -71,17 +75,26 @@
 - (void)viewDidLoad {
 	// Do any additional setup after loading the view, typically from a nib.
 
-    //scrollable corkboard
-    [scrollView setScrollEnabled:YES];
-    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){ //ipad
         [scrollView setContentSize:CGSizeMake(1483, 483)];
     }else {
         [scrollView setContentSize:CGSizeMake(700, 128)];
     }
     
-    pageControl.numberOfPages = 2;
-    pageControl.currentPage = 0;
+    /*********************************
+    //re-enable when a song-pack is installed
+
+    //scrollable corkboard
+    //[scrollView setScrollEnabled:YES];
+     
+    //pageControl.numberOfPages = 2;
+    //pageControl.currentPage = 0;
+    
+    *********************************/
+    
+    [scrollView setScrollEnabled:NO];
+    pageControl.hidden = YES;
+    
     
     [super viewDidLoad];
 }
