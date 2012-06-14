@@ -14,14 +14,6 @@
 @synthesize isIPhone;
 @synthesize karaokeScreen;
 
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
- */
 
 static float Y_PHONE_BOTTOM     = 321;
 static float Y_PHONE_MIDDLE     = 301;
@@ -34,14 +26,17 @@ static float Y_PAD_TOP          = 709;
 static float X_PHONE_CENTER     = 240;
 static float X_PAD_CENTER       = 512;
 
-static float Y_PAD_TEXT_TOP     = 26;
-static float Y_PAD_TEXT_HEIGHT  = 58;
-static float Y_PHONE_TEXT_TOP   = 16;
+static float Y_PAD_TEXT_TOP         = 32;
+static float PAD_BAR_HEIGHT         = 6;
+static float PHONE_BAR_HEIGHT       = 3;
+static float Y_PHONE_CENTER_HEIGHT  = 25;
+static float Y_PAD_CENTER_HEIGHT    = 30;
+static float Y_PHONE_TEXT_TOP       = 18;
 
 - (void)setText:(NSString *)text{
     [karaokeText setText:text];
     
-    /*
+    
     CGSize fontSize = [karaokeText.text sizeWithFont:karaokeText.font];
     //NSLog(@"ktext width:%f", fontSize.width);
     
@@ -50,7 +45,7 @@ static float Y_PHONE_TEXT_TOP   = 16;
     }else{
         [karaokeScreen setAlpha:0.0];
     }
-     */
+    
 }
 
 - (void)resetScreen:(CGSize)fontSize{
@@ -58,16 +53,17 @@ static float Y_PHONE_TEXT_TOP   = 16;
     float xAnchor = 0;
     if(isIPhone){
         xAnchor = X_PHONE_CENTER-(fontSize.width/2);
-        [karaokeScreen setBounds:CGRectMake(xAnchor, Y_PHONE_TEXT_TOP, 0, Y_PAD_TEXT_HEIGHT)];
+        [karaokeScreen setBounds:CGRectMake(xAnchor, Y_PHONE_TEXT_TOP, 0, PHONE_BAR_HEIGHT)];
+        karaokeScreen.center = CGPointMake(xAnchor,Y_PHONE_CENTER_HEIGHT);
     }else{
         xAnchor = X_PAD_CENTER-(fontSize.width/2);
-        [karaokeScreen setBounds:CGRectMake(xAnchor, Y_PAD_TEXT_TOP, 0, Y_PAD_TEXT_HEIGHT)];
+        [karaokeScreen setBounds:CGRectMake(xAnchor, Y_PAD_TEXT_TOP, 0, PAD_BAR_HEIGHT)];
+        karaokeScreen.center = CGPointMake(xAnchor,Y_PAD_CENTER_HEIGHT);
     }
     float xMaxWidth = fontSize.width+10;
     
     CGRect bounds = karaokeScreen.bounds;
     karaokeScreen.layer.anchorPoint = CGPointMake(0, 0.5);
-    karaokeScreen.center = CGPointMake(xAnchor,Y_PAD_TEXT_HEIGHT);
     [karaokeScreen setAlpha:0.5];
     
     [UIView beginAnimations:nil context:nil];
@@ -169,13 +165,15 @@ static float Y_PHONE_TEXT_TOP   = 16;
 /////////////////////////
 /////////////////////////
 /////////////////////////
-
+/*
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
 	CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextSetBlendMode(ctx, kCGBlendModeCopy);
 }
-
+*/
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     

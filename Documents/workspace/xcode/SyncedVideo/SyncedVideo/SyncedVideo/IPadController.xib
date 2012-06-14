@@ -258,10 +258,10 @@
 							<string key="NSResourceName">cartoon.png</string>
 						</object>
 					</object>
-					<object class="IBUIButton" id="256270650">
+					<object class="IBUIButton" id="118338293">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{848, 563}, {143, 23}}</string>
+						<string key="NSFrame">{{848, 563}, {146, 34}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -364,6 +364,15 @@
 					</object>
 					<int key="connectionID">98</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">makePurchase:</string>
+						<reference key="source" ref="118338293"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">100</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -382,7 +391,7 @@
 							<reference ref="12589924"/>
 							<reference ref="530271234"/>
 							<reference ref="104669160"/>
-							<reference ref="256270650"/>
+							<reference ref="118338293"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">homeView</string>
@@ -459,7 +468,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">99</int>
-						<reference key="object" ref="256270650"/>
+						<reference key="object" ref="118338293"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -490,7 +499,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">99</int>
+			<int key="maxID">100</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

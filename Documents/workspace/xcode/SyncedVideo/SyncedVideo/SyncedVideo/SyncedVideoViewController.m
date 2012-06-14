@@ -15,6 +15,8 @@
 
 -(IBAction)makePurchase:(id)sender{
     //call manager singleton
+    
+    NSLog(@"MAKE PURCHASE!!!");
 }
 
 
