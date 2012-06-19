@@ -11,9 +11,18 @@
 #define kInAppPurchaseManagerProductsFetchedNotification @"kInAppPurchaseManagerProductsFetchedNotification"
 
 
-@interface InAppPurchaseManager : NSObject <SKProductsRequestDelegate>{
+@interface InAppPurchaseManager : NSObject <UIAlertViewDelegate, SKProductsRequestDelegate>{
+    
     SKProduct *songPackProduct;
     SKProductsRequest *productsRequest;
+    
+    UIAlertView *askToPurchase;
 } 
+
+#pragma mark Singleton Method
++ (id)getInstance;
+
+
+- (void)requestProductData;
 
 @end

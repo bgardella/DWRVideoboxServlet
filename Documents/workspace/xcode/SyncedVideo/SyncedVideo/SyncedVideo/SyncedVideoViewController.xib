@@ -51,11 +51,12 @@
 							<object class="IBUIImageView" id="248015041">
 								<reference key="NSNextResponder" ref="913129955"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{-26, -86}, {740, 319}}</string>
+								<string key="NSFrame">{{0, -86}, {480, 319}}</string>
 								<reference key="NSSuperview" ref="913129955"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="570210939"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<int key="IBUIContentMode">3</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
@@ -228,6 +229,7 @@
 						<string key="NSFrame">{{248, 216}, {38, 36}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="253595028"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -241,7 +243,7 @@
 						<string key="NSFrame">{{25, 180}, {84, 120}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="253595028"/>
+						<reference key="NSNextKeyView" ref="857344400"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -256,7 +258,6 @@
 						<string key="NSFrame">{{341, 195}, {135, 23}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="857344400"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -322,6 +323,14 @@
 					<int key="connectionID">65</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">scrollBackgroundImageView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="248015041"/>
+					</object>
+					<int key="connectionID">74</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">flipToVideoView:</string>
 						<reference key="source" ref="648188578"/>
@@ -345,7 +354,7 @@
 						<reference key="source" ref="913129955"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
-					<int key="connectionID">67</int>
+					<int key="connectionID">75</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -536,7 +545,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">70</int>
+			<int key="maxID">75</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -588,11 +597,13 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>pageControl</string>
+							<string>scrollBackgroundImageView</string>
 							<string>scrollView</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIPageControl</string>
+							<string>UIImageView</string>
 							<string>UIScrollView</string>
 						</object>
 					</object>
@@ -601,6 +612,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>pageControl</string>
+							<string>scrollBackgroundImageView</string>
 							<string>scrollView</string>
 						</object>
 						<object class="NSArray" key="dict.values">
@@ -608,6 +620,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">pageControl</string>
 								<string key="candidateClassName">UIPageControl</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">scrollBackgroundImageView</string>
+								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">scrollView</string>

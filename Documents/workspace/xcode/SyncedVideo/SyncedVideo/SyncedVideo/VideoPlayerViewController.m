@@ -60,21 +60,25 @@ static int VIDEO_BTN_IDX = 1001;
 
 
 - (void)loadVideoByButtonPress:(UIButton *)buttonPressed{
-    NSString *vidTitle;
-    NSString *lrcTitle;
+    //NSString *vidTitle;
+    //NSString *lrcTitle;
+    /*
     if([buttonPressed.titleLabel.text isEqualToString:@"Froggie"]){
-        vidTitle = @"froggie-sophie";
+        vidTitle = @"froggie";
         lrcTitle = @"froggie";
     }
     if([buttonPressed.titleLabel.text isEqualToString:@"Wheels"]){
         vidTitle = @"wheels";
         lrcTitle = @"wheels";
     }
+    */
+    
+    NSString *titleString = buttonPressed.titleLabel.text.lowercaseString;
     
     [self messWithAudio];
     
-    [self playThatLayer:(vidTitle)
-                       :(lrcTitle)];
+    [self playThatLayer:(titleString)
+                       :(titleString)];
 }
 
 
@@ -516,6 +520,7 @@ static Float64 secondsWithCMTimeOrZeroIfInvalid(CMTime time) {
         // Custom initialization
         
         self.isIPhone = UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad;
+        
     }
     return self;
 }

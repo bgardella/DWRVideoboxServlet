@@ -7,14 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <StoreKit/StoreKit.h>
+#import "InAppPurchaseManager.h"
 
-@interface SyncedVideoViewController : UIViewController {
+@interface SyncedVideoViewController : UIViewController{
 @private    
     
     IBOutlet UIPageControl *pageControl;
     IBOutlet UIScrollView *scrollView;
+    IBOutlet UIImageView *scrollBackgroundImageView;
 }
+
 
 - (IBAction)flipToVideoView:(id)sender;
 - (IBAction)changePage:(id)sender;
