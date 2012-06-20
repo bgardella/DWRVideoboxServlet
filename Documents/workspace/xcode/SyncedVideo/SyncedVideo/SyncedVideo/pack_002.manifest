@@ -1,0 +1,7 @@
+name=Song Pack #2
+description=Song Pack #2 includes "Train Medley" and "Old Lady Who Swallowed a Fly"
+pack_id=2
+button_1_id=train_medley
+button_2_id=old_lady_who_swallowed_a_fly
+button_1_title=Train Medley
+button_2_title=Old Lady Who Swallowed a Fly 

@@ -15,10 +15,12 @@
 
 
 static NSString *songPackPrefix     = @"com.sophieworld.sws.SP.";
-static float PAD_SCROLL_IMG_WIDTH   = 1524;
-static float PHONE_SCROLL_IMG_WIDTH = 840;
+static float PAD_SCROLL_IMG_WIDTH   = 1760;
+static float PHONE_SCROLL_IMG_WIDTH = 890;
 static float PAD_SCROLL_WIDTH       = 1024;
 static float PHONE_SCROLL_WIDTH     = 480;
+static float PAD_STICKY_SIZE        = 300;
+static float PHONE_STICKY_SIZE      = 150;
 
 -(IBAction)makePurchase:(id)sender{
     
@@ -39,6 +41,11 @@ static float PHONE_SCROLL_WIDTH     = 480;
     
 }
 
+//////////////////////////////////
+//////////////////////////////////
+//////////////////////////////////
+// scrolling stuff
+
 - (IBAction)changePage:(id)sender{
     
     int pgOffset = 480;
@@ -57,15 +64,31 @@ static float PHONE_SCROLL_WIDTH     = 480;
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)passedScrollView {
     
+    [self snapScroll];
+    
     NSLog(@"SCROLL VIEW HERE!!!");
     CGFloat pageWidth = passedScrollView.frame.size.width;
     int xoff =  passedScrollView.contentOffset.x;
-    NSLog(@"xoff:%i, width:%f", xoff, pageWidth);
+    float pageFloat = xoff/pageWidth;
+    int page = (int)(pageFloat + 0.5f);
     
-    int page = xoff/3;
+    NSLog(@"xoff:%i, width:%f, page:%i", xoff, pageWidth, page);
+    
+    
     pageControl.currentPage = page;
 }
 
+- (void) snapScroll;{
+    int scrollWidth = PHONE_SCROLL_WIDTH;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){ //ipad
+        scrollWidth = PAD_SCROLL_WIDTH;
+    }
+    
+    int temp = (scrollView.contentOffset.x+(scrollWidth/2)) / scrollWidth;
+    [scrollView setContentOffset:CGPointMake(temp*scrollWidth , 0) animated:YES];
+    int xoff =  scrollView.contentOffset.x;
+    NSLog(@"xoff after snap:%i", xoff);
+}
 
 //////////////////////////////////
 //////////////////////////////////
@@ -103,6 +126,10 @@ static float PHONE_SCROLL_WIDTH     = 480;
     NSArray *paths = [[NSBundle mainBundle] pathsForResourcesOfType:@"manifest" inDirectory:nil];
     NSLog(@"Number of song packs installed: %i", paths.count);
  
+    for(NSString *path in paths){
+        NSLog(@"pack path: %@", path);
+    }
+    
     if(paths.count > 1){
         //scrollable corkboard
         [scrollView setScrollEnabled:YES];
@@ -127,7 +154,10 @@ static float PHONE_SCROLL_WIDTH     = 480;
         
         [scrollView setContentSize:CGSizeMake(widthAdjusted, bgScrollHeight)];
         
-        NSLog(@"adjusted width:%i", widthAdjusted);
+        scrollBackgroundImageView.backgroundColor = [UIColor colorWithPatternImage:
+                                                     [UIImage imageNamed:@"cork_board_seemless.png"]];
+        
+        //NSLog(@"adjusted width:%i", widthAdjusted);
         
         [self addSongPackButtons:paths];
         
@@ -141,10 +171,14 @@ static float PHONE_SCROLL_WIDTH     = 480;
 
 - (void)addSongPackButtons:(NSArray *)songPackPaths{
     
-    for (NSString *manifestFilePath in songPackPaths) {
+    for(int i=0; i<songPackPaths.count; i++){
+    //for (NSString *manifestFilePath in songPackPaths) {
+        NSString *manifestFilePath = [songPackPaths objectAtIndex:i];
+         NSLog(@"manifestFilePath: %@", manifestFilePath);
         
         NSData *fileContents = [NSData dataWithContentsOfFile:manifestFilePath];
         NSString *content = [NSString stringWithUTF8String:[fileContents bytes]];
+        //[fileContents release];
         NSArray *values = [content componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
         
         NSString *buttonOne;
@@ -176,7 +210,7 @@ static float PHONE_SCROLL_WIDTH     = 480;
             }
             
         }
-        
+                
         [self createSongPackButtons:buttonOne :btnOneTitle :buttonTwo :btnTwoTitle :packId];
     }
     
@@ -187,35 +221,83 @@ static float PHONE_SCROLL_WIDTH     = 480;
                              :  (NSString *)buttonId2
                              :  (NSString *)btnTwoTitle
                              :  (NSString *)packId{
-    //NSLog(@"CREATE button one: %@ button two: %@ pack id: %@", buttonId1, buttonId2, packId);
+    NSLog(@"CREATE button one: %@ button two: %@ pack id: %@", buttonId1, buttonId2, packId);
     
     if(packId.intValue > 0){
 
         NSString *imgPath = [[NSBundle mainBundle] pathForResource:@"post_it_big" ofType:@"png"];
         UIImage *image = [UIImage imageWithContentsOfFile:imgPath];
         
+        int fontSize1 = 29;
+        int fontSize2 = 29;
+        int xbtn1 = 73+(PHONE_SCROLL_WIDTH*packId.intValue);
+        int xbtn2 = 267+(PHONE_SCROLL_WIDTH*packId.intValue);
+        
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){ //ipad
+            xbtn1 = 147+(PAD_SCROLL_WIDTH*packId.intValue);
+            xbtn2 = 617+(PAD_SCROLL_WIDTH*packId.intValue);
+            
+            fontSize1 = 60;
+            fontSize2 = 60;
+
+            if(btnOneTitle.length > 10){
+                fontSize1 = 45;
+            }
+            if(btnTwoTitle.length > 10){
+                fontSize2 = 45;
+            }
+        }else {
+            if(btnOneTitle.length > 10){
+                fontSize1 = 20;
+            }
+            if(btnTwoTitle.length > 10){
+                fontSize2 = 20;
+            }
+        }
         
         UIButton *songButton1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        //[evtButton addTarget:self 
-        //              action:@selector(videoTouched) forControlEvents:UIControlEventTouchUpInside];
+        [songButton1 addTarget:self action:@selector(flipToVideoView:) 
+                     forControlEvents:UIControlEventTouchUpInside];
         
-        [songButton1 setFrame:CGRectMake(1171,82,300,300)];
-        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(31,2,300,300)];
-        label1.font = [UIFont fontWithName:@"Noteworthy" size:60];
+        [songButton1 setTitle:buttonId1 forState:UIControlStateNormal];
+        [songButton1 setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+        CGRect labelRect;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){ //ipad
+            [songButton1 setFrame:CGRectMake(xbtn1,82,PAD_STICKY_SIZE,PAD_STICKY_SIZE)];
+            labelRect = CGRectMake(30,-20,250,300);
+        }else{
+            [songButton1 setFrame:CGRectMake(xbtn1,2,PHONE_STICKY_SIZE,PHONE_STICKY_SIZE)];
+            labelRect = CGRectMake(15,-10,120,150);
+        }
+        UILabel *label1 = [[UILabel alloc] initWithFrame:labelRect];
+        label1.font = [UIFont fontWithName:@"Noteworthy" size:fontSize1];
         label1.textColor = UIColor.blackColor;
-        label1.text = btnOneTitle;
+        [label1 setText:btnOneTitle];
         label1.backgroundColor = [UIColor clearColor];
+        [label1 setTextAlignment:UITextAlignmentCenter];
+        label1.numberOfLines = 3;
         [songButton1 addSubview:label1];
         [songButton1 setBackgroundImage:image forState:UIControlStateNormal];
         [scrollView addSubview:songButton1];
         
         UIButton *songButton2 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [songButton2 setFrame:CGRectMake(1571,82,300,300)];
-        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(31,2,300,300)];
-        label2.font = [UIFont fontWithName:@"Noteworthy" size:60];
+        [songButton2 addTarget:self action:@selector(flipToVideoView:) 
+                     forControlEvents:UIControlEventTouchUpInside];
+        
+        [songButton2 setTitle:buttonId2 forState:UIControlStateNormal];
+        [songButton2 setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){ //ipad
+            [songButton2 setFrame:CGRectMake(xbtn2,82,PAD_STICKY_SIZE,PAD_STICKY_SIZE)];
+        }else{
+            [songButton2 setFrame:CGRectMake(xbtn2,2,PHONE_STICKY_SIZE,PHONE_STICKY_SIZE)];
+        }
+        UILabel *label2 = [[UILabel alloc] initWithFrame:labelRect];
+        label2.font = [UIFont fontWithName:@"Noteworthy" size:fontSize2];
         label2.textColor = UIColor.blackColor;
-        label2.text = btnTwoTitle;
+        [label2 setText:btnTwoTitle];
         label2.backgroundColor = [UIColor clearColor];
+        [label2 setTextAlignment:UITextAlignmentCenter];
+        label2.numberOfLines = 3;
         [songButton2 addSubview:label2];
         [songButton2 setBackgroundImage:image forState:UIControlStateNormal];
         [scrollView addSubview:songButton2];

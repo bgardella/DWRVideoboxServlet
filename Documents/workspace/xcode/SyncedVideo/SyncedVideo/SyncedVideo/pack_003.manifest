@@ -1,0 +1,7 @@
+name=Song Pack #3
+description=Song Pack #3 includes "Bingo" and "Five Little Turkeys"
+pack_id=3
+button_1_id=bingo
+button_2_id=five_little_turkeys
+button_1_title=Bingo
+button_2_title=Five Little Turkeys 
