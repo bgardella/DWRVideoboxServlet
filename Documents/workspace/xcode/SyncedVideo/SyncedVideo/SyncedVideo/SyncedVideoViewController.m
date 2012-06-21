@@ -105,20 +105,22 @@ static float PHONE_STICKY_SIZE      = 150;
 }
 
 
-
 - (void)viewDidLoad {
 	// Do any additional setup after loading the view, typically from a nib.
-/*
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){ //ipad
-        [scrollView setContentSize:CGSizeMake(1483, 483)];
-    }else {
-        [scrollView setContentSize:CGSizeMake(700, 128)];
-    }
-  */  
+ 
     [self setupSongPackViews];
         
+    NSString *packId = nil;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(notifySongPackPurchase:) 
+                                                 name:kInAppPurchaseManagerTransactionSucceededNotification
+                                               object:packId];
+    
     [super viewDidLoad];
 }
+
+
+
 
 - (void)setupSongPackViews{
     
@@ -304,6 +306,26 @@ static float PHONE_STICKY_SIZE      = 150;
         
     }
 }
+
+- (void)notifySongPackPurchase:(NSNotification*)notification {
+
+    NSString *packId = (NSString *)notification.object;
+    
+    NSLog(@"pack id purchased notified: %@", packId);
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL hasPack = [defaults boolForKey:packId];
+
+    if(hasPack){
+        NSLog(@"pack found: %@ fetch from server...", packId);
+        //load it from server
+    }else {
+        NSLog(@"pack not found: %@", packId);
+    }
+
+}
+
+
 
 - (void)viewDidUnload {
     [super viewDidUnload];

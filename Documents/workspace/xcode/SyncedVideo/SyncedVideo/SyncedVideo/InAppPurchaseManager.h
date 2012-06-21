@@ -7,13 +7,17 @@
 //
 
 #import <StoreKit/StoreKit.h>
+#import "ASIFormDataRequest.h"
+#import "ASINetworkQueue.h"
+
 
 #define kInAppPurchaseManagerProductsFetchedNotification @"kInAppPurchaseManagerProductsFetchedNotification"
+#define kInAppPurchaseManagerTransactionFailedNotification @"kInAppPurchaseManagerTransactionFailedNotification"
+#define kInAppPurchaseManagerTransactionSucceededNotification @"kInAppPurchaseManagerTransactionSucceededNotification"
 
 
-@interface InAppPurchaseManager : NSObject <UIAlertViewDelegate, SKProductsRequestDelegate>{
+@interface InAppPurchaseManager : NSObject <UIAlertViewDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver>{
     
-    SKProduct *songPackProduct;
     SKProductsRequest *productsRequest;
     
     UIAlertView *askToPurchase;
@@ -22,6 +26,10 @@
 #pragma mark Singleton Method
 + (id)getInstance;
 
+// public methods
+- (void)loadStore;
+- (BOOL)canMakePurchases;
+- (void)purchaseSongPack:(NSString *)productId;
 
 - (void)requestProductData;
 
