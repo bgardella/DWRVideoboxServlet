@@ -13,7 +13,6 @@
 
 @implementation SyncedVideoViewController
 
-
 static NSString *songPackPrefix     = @"com.sophieworld.sws.SP.";
 static float PAD_SCROLL_IMG_WIDTH   = 1760;
 static float PHONE_SCROLL_IMG_WIDTH = 890;
@@ -22,14 +21,16 @@ static float PHONE_SCROLL_WIDTH     = 480;
 static float PAD_STICKY_SIZE        = 300;
 static float PHONE_STICKY_SIZE      = 150;
 
+
 -(IBAction)makePurchase:(id)sender{
     
     NSLog(@"MAKE PURCHASE!!!");
     
     //call manager singleton
-    InAppPurchaseManager *inAppPurchaseManager = [InAppPurchaseManager getInstance];
-    [inAppPurchaseManager requestProductData];
-    
+//    InAppPurchaseManager *inAppPurchaseManager = [InAppPurchaseManager getInstance];
+//    [inAppPurchaseManager requestProductData];
+ 
+    [self fetchSongPackFromServer:@"SP-001"];
 }
  
 -(IBAction)flipToVideoView:(id)sender{
@@ -319,13 +320,69 @@ static float PHONE_STICKY_SIZE      = 150;
     if(hasPack){
         NSLog(@"pack found: %@ fetch from server...", packId);
         //load it from server
+
+        [self fetchSongPackFromServer:packId];
+        
     }else {
         NSLog(@"pack not found: %@", packId);
     }
 
 }
 
+- (void)fetchSongPackFromServer:(NSString *)packId{
+    
+    ASINetworkQueue *networkQueue = [ASINetworkQueue queue];
+    [networkQueue retain];
+    NSString *serverUrl = @"http://gardella.org/sophie/";
+    NSString *packFileName = @"sp-001.zip";
+    
+    NSString *str = [NSString stringWithFormat:@"%@%@", serverUrl,packFileName];
+    NSURL *url = [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    ASIHTTPRequest *request = [[[ASIHTTPRequest alloc] initWithURL:url] autorelease];
+    
+    NSArray *dirArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,    NSUserDomainMask, YES);
+    NSString *path = [NSString stringWithFormat:@"%@/test.zip", [dirArray objectAtIndex:0]];
+    NSString *tempPath =[NSString stringWithFormat:@"%@/test.zip.download", [dirArray objectAtIndex:0]];
+    
+    
+    [request setDownloadDestinationPath:path];
+    [request setTemporaryFileDownloadPath:tempPath];
+    
+    [request setRequestMethod:@"GET"];
+    [request setDelegate:self];
+    [request setDidFinishSelector: @selector(gotSongPackResponse:)];
+    [request setDidFailSelector:@selector(gotSongPackResponseFail:)];
+    [request setShowAccurateProgress:YES];
+    
+    [downloadProgressView setAlpha:1.0];
+    
+    [networkQueue cancelAllOperations];
+    [networkQueue setDownloadProgressDelegate:downloadProgressView];
+    [networkQueue setDelegate:self];
+    [networkQueue setRequestDidFinishSelector:@selector(queueComplete:)];
+    [networkQueue addOperation: request];
+    [networkQueue go];
+}
 
+- (void)queueComplete:(ASINetworkQueue *)queue{
+    NSLog(@"dl queue complete");
+    [downloadProgressView setAlpha:0];
+}
+
+- (void)gotSongPackResponse:(ASIHTTPRequest *)req{
+ 
+    NSString *path = req.downloadDestinationPath;
+    NSLog(@"pack downloaded: %@", path);
+}
+
+- (void)gotSongPackResponseFail:(ASIHTTPRequest *)req{
+    
+    NSLog(@"Song pack request failed: %i", req.responseStatusCode);
+    NSLog(@"Song pack response status: %@", req.responseStatusMessage);
+    NSLog(@"Song pack response string: %@", req.responseString);
+    NSLog(@"responseData %@",[req responseData]);
+    NSLog(@"responseHeaders %@",[req responseHeaders]);
+}
 
 - (void)viewDidUnload {
     [super viewDidUnload];

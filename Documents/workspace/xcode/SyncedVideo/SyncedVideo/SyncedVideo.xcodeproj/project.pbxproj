@@ -58,6 +58,7 @@
 		B565B0EC159285280040255F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B565B0EB159285280040255F /* Reachability.m */; };
 		B5716E751567846100616429 /* fullscreen_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = B5716E741567846100616429 /* fullscreen_btn.png */; };
 		B575A2CB1540DF3900349E74 /* cork_board_1000x800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B575A2CA1540DF3900349E74 /* cork_board_1000x800.jpg */; };
+		B5B85EE31593112500BF20BC /* DownloadProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B85EE21593112500BF20BC /* DownloadProgressView.m */; };
 		B5BF20911587AAB800120BE4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5BF20901587AAB800120BE4 /* StoreKit.framework */; };
 		B5BF2093158858E400120BE4 /* cork_board_seemless.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BF2092158858E400120BE4 /* cork_board_seemless.png */; };
 		B5BF209615885BA900120BE4 /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BF209515885BA900120BE4 /* InAppPurchaseManager.m */; };
@@ -152,6 +153,8 @@
 		B565B0EB159285280040255F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		B5716E741567846100616429 /* fullscreen_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fullscreen_btn.png; path = "../../../../../../Desktop/sophie work/wireframes/fullscreen_btn.png"; sourceTree = "<group>"; };
 		B575A2CA1540DF3900349E74 /* cork_board_1000x800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cork_board_1000x800.jpg; sourceTree = "<group>"; };
+		B5B85EE11593112500BF20BC /* DownloadProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadProgressView.h; sourceTree = "<group>"; };
+		B5B85EE21593112500BF20BC /* DownloadProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadProgressView.m; sourceTree = "<group>"; };
 		B5BF20901587AAB800120BE4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B5BF2092158858E400120BE4 /* cork_board_seemless.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cork_board_seemless.png; sourceTree = "<group>"; };
 		B5BF209415885BA900120BE4 /* InAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseManager.h; sourceTree = "<group>"; };
@@ -243,6 +246,8 @@
 				B55D7CD2155D8A2C002A2DB2 /* VideoControlView.m */,
 				B501D1541563A78D000550D5 /* KaraokeView.h */,
 				B501D1551563A78D000550D5 /* KaraokeView.m */,
+				B5B85EE11593112500BF20BC /* DownloadProgressView.h */,
+				B5B85EE21593112500BF20BC /* DownloadProgressView.m */,
 				B5BF209415885BA900120BE4 /* InAppPurchaseManager.h */,
 				B5BF209515885BA900120BE4 /* InAppPurchaseManager.m */,
 				B5046A701525856B001E258C /* Supporting Files */,
@@ -502,6 +507,7 @@
 				B565B0E3159284B30040255F /* ASIInputStream.m in Sources */,
 				B565B0E4159284B30040255F /* ASINetworkQueue.m in Sources */,
 				B565B0EC159285280040255F /* Reachability.m in Sources */,
+				B5B85EE31593112500BF20BC /* DownloadProgressView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

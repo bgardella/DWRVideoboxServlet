@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "InAppPurchaseManager.h"
+#import "ASIFormDataRequest.h"
+#import "ASINetworkQueue.h"
+#import "DownloadProgressView.h"
 
 @interface SyncedVideoViewController : UIViewController{
 @private    
@@ -15,6 +18,7 @@
     IBOutlet UIPageControl *pageControl;
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIImageView *scrollBackgroundImageView;
+    IBOutlet DownloadProgressView *downloadProgressView;
 }
 
 
