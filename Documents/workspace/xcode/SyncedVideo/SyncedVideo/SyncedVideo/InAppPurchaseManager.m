@@ -11,7 +11,7 @@
 @implementation InAppPurchaseManager
     
 static NSString *songPackPrefix = @"com.sophieworld.sws.SP.";
-
+@synthesize chosenProduct;
 
 #pragma mark Singleton Method
 
@@ -40,15 +40,44 @@ static NSString *songPackPrefix = @"com.sophieworld.sws.SP.";
     //[self requestProUpgradeProductData];
 } 
 
-- (BOOL)canMakePurchases{
-    return [SKPaymentQueue canMakePayments];
-} 
+- (void)makePurchase:(SKProduct *)product{
+    
+    chosenProduct = [product retain];
+    
+    askToPurchase = [[UIAlertView alloc] 
+                     initWithTitle:product.localizedTitle
+                     message:@"Would you like to Purchase?"
+                     delegate:self 
+                     cancelButtonTitle:nil
+                     otherButtonTitles:@"Yes", @"No", nil]; 
+    askToPurchase.delegate = self;
+    [askToPurchase show];
+    [askToPurchase release];
+}
 
-- (void)purchaseSongPack:(SKProduct *)product{
-    SKPayment *payment = [SKPayment paymentWithProduct:product];
-    [[SKPaymentQueue defaultQueue] addPayment:payment];
-} 
 
+- (void)getProductArray {
+    
+    if ([SKPaymentQueue canMakePayments]) { 
+        
+        NSArray  *allPacksArr = [NSArray arrayWithObjects:
+                                 [songPackPrefix stringByAppendingString:@"001"],
+                                 [songPackPrefix stringByAppendingString:@"002"],
+                                 [songPackPrefix stringByAppendingString:@"003"],
+                                 [songPackPrefix stringByAppendingString:@"004"],
+                                 nil];
+        
+        NSSet* allPacksSet = [NSSet setWithArray:allPacksArr];
+        
+        //NSString *songPackOne = [songPackPrefix stringByAppendingString:@"001"];
+        
+        SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:allPacksSet];
+        
+        request.delegate = self;  
+        [request start];  
+        
+    }
+}
 
 - (void)requestProductData {
     
@@ -77,18 +106,14 @@ static NSString *songPackPrefix = @"com.sophieworld.sws.SP.";
             // user tapped YES, but we need to check if IAP is enabled or not.
             if ([SKPaymentQueue canMakePayments]) { 
                 
-                NSArray  *allPacksArr = [NSArray arrayWithObjects:
-                                         [songPackPrefix stringByAppendingString:@"001"],
-                                         [songPackPrefix stringByAppendingString:@"002"],
-                                         [songPackPrefix stringByAppendingString:@"003"],
-                                         [songPackPrefix stringByAppendingString:@"004"],
+                NSArray  *packArr = [NSArray arrayWithObjects:
+                                         chosenProduct.productIdentifier,
                                          nil];
                 
-                NSSet* allPacksSet = [NSSet setWithArray:allPacksArr];
+                NSSet* packSet = [NSSet setWithArray:packArr];
+                SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:packSet];
                 
-                //NSString *songPackOne = [songPackPrefix stringByAppendingString:@"001"];
-                
-                SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:allPacksSet];
+                [chosenProduct release];
                 
                 request.delegate = self;  
                 [request start];  
@@ -109,13 +134,18 @@ static NSString *songPackPrefix = @"com.sophieworld.sws.SP.";
     
 }
 
+- (void)purchaseSongPack:(SKProduct *)product{
+    SKPayment *payment = [SKPayment paymentWithProduct:product];
+    [[SKPaymentQueue defaultQueue] addPayment:payment];
+} 
+
 
 #pragma mark request available products from store
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
     NSArray *products = response.products;
     
     NSLog(@"product count:%i", products.count);
-    
+    /*
     for(SKProduct *prod in products){
         if(prod){
         NSLog(@"Product title: %@" , prod.localizedTitle);
@@ -123,18 +153,28 @@ static NSString *songPackPrefix = @"com.sophieworld.sws.SP.";
         NSLog(@"Product price: %@" , prod.price);
         NSLog(@"Product id: %@" , prod.productIdentifier);
         }
-    }
-
-    for (NSString *invalidProductId in response.invalidProductIdentifiers){
-        NSLog(@"Invalid product id: %@" , invalidProductId);
-    }
+    }*/
     
-    [self purchaseSongPack:[products objectAtIndex:0]];
+    if(response.invalidProductIdentifiers.count > 0){
+    
+        for (NSString *invalidProductId in response.invalidProductIdentifiers){
+            NSLog(@"Invalid product id: %@" , invalidProductId);
+        }
+    }else{
+        
+        if(products.count == 1){ //this is a purchase
+            
+            [self purchaseSongPack:[products objectAtIndex:0]];
+            
+        }else if(products.count > 1){ //this is a query
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseManagerProductsFetchedNotification 
+                                                                object:products userInfo:nil];
+        }
+    }
     
     // finally release the reqest we alloc/init’ed in requestProUpgradeProductData
     [productsRequest release];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseManagerProductsFetchedNotification object:self userInfo:nil];
 } 
 
 

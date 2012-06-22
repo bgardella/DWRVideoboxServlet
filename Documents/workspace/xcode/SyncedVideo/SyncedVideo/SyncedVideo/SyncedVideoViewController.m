@@ -28,15 +28,10 @@ static float PHONE_STICKY_SIZE      = 150;
     
     NSLog(@"MAKE PURCHASE!!!");
     
-    //call manager singleton
-//    InAppPurchaseManager *inAppPurchaseManager = [InAppPurchaseManager getInstance];
-//    [inAppPurchaseManager requestProductData];
- 
-    //[self fetchSongPackFromServer:@"SP-001"];
-
     StoreViewController *storeView = [[[StoreViewController alloc] init] autorelease];
     [storeView setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
     [self presentModalViewController:storeView animated:YES];
+
 }
  
 -(IBAction)flipToVideoView:(id)sender{

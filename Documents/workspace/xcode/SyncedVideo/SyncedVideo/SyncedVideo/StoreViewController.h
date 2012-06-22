@@ -8,13 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StoreViewController : UIViewController{
+@interface StoreViewController : UIViewController  <UITableViewDelegate, UITableViewDataSource>{
 @private
     BOOL isIPhone;
-
+    IBOutlet UITableView *tableView;
+    NSArray *products;
 }
 
 @property (nonatomic, assign) BOOL isIPhone;
+@property (nonatomic, retain) NSArray *products;
+
 
 - (IBAction)cancel:(id)sender;
 

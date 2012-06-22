@@ -20,16 +20,20 @@
     SKProductsRequest *productsRequest;
     
     UIAlertView *askToPurchase;
+    SKProduct *chosenProduct;
 } 
+
+@property (nonatomic, retain) SKProduct *chosenProduct;
+
 
 #pragma mark Singleton Method
 + (id)getInstance;
 
 // public methods
 - (void)loadStore;
-- (BOOL)canMakePurchases;
-- (void)purchaseSongPack:(NSString *)productId;
+- (void)makePurchase:(SKProduct *)product;
 
 - (void)requestProductData;
+- (void)getProductArray;
 
 @end
