@@ -66,6 +66,9 @@ static NSString *songPackPrefix = @"com.sophieworld.sws.SP.";
 }     
     
 
+// TODO: Show and Hide "Store UI View" so users can select a pack for purchase
+// instead of using alertViews
+
 #pragma mark AlertView Delegate
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     
@@ -164,24 +167,24 @@ static NSString *songPackPrefix = @"com.sophieworld.sws.SP.";
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
     
     NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:transaction, @"transaction" , nil];
-    if (wasSuccessful)
-    {
-         NSLog(@"song pack purchased: %@ sending notification...", transaction.payment.productIdentifier);
-        
-        // send out a notification that we’ve finished the transaction
-        [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseManagerTransactionSucceededNotification 
-                                                            object:transaction.payment.productIdentifier userInfo:userInfo];
-        
+    if (wasSuccessful){
         
         ////////////////skip receipt validation for now//////////////////
         //use the receiptString as a signature to verify the purchase
         //NSString *receiptString = [self encode:(uint8_t *)transaction.transactionReceipt.bytes length:transaction.transactionReceipt.length];
         //[self sendingRequestForReceipt:receiptString];
         /////////////////////////////////////////////////////////////////
-       
+        
+        
+         NSLog(@"song pack purchased: %@ sending notification...", transaction.payment.productIdentifier);
+        
+        // send out a notification that we’ve finished the transaction
+        // should get picked up by ViewController and call notifySongPackPurchase
+        [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseManagerTransactionSucceededNotification 
+                                                            object:transaction.payment.productIdentifier userInfo:userInfo];
+        
     }
-    else
-    {
+    else{
         // send out a notification for the failed transaction
         [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseManagerTransactionFailedNotification object:self userInfo:userInfo];
     }
@@ -246,8 +249,13 @@ static NSString *songPackPrefix = @"com.sophieworld.sws.SP.";
 } 
 
 
-#pragma mark Util methods
+//////////////////////////////////
+//////////////////////////////////
+//////////////////////////////////
 
+/*
+ #pragma mark Util methods
+ 
 - (NSString *)encode:(const uint8_t *)input length:(NSInteger)length {
     static char table[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     
@@ -273,7 +281,7 @@ static NSString *songPackPrefix = @"com.sophieworld.sws.SP.";
     
     return [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];
 }
-
+*/
 
 
 //////////////////////////////////

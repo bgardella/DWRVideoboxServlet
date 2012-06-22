@@ -56,6 +56,10 @@
 								<int key="IBUIContentMode">3</int>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">cork_board_seemless.png</string>
+								</object>
 							</object>
 							<object class="IBUIButton" id="1064533183">
 								<reference key="NSNextResponder" ref="12589924"/>
@@ -234,7 +238,6 @@
 						<string key="NSFrame">{{524, 615}, {38, 36}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -738,6 +741,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="cartoon.png">{157, 265}</string>
+			<string key="cork_board_seemless.png">{1890, 745}</string>
 			<string key="footer.png">{960, 99}</string>
 			<string key="header.png">{960, 149}</string>
 			<string key="post_it_big.png">{350, 328}</string>

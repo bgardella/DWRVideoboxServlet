@@ -10,6 +10,7 @@
 #import "SyncedVideoAppDelegate.h"
 #import "VideoPlayerViewController.h"
 #import "SSZipArchive.h"
+#import "StoreViewController.h"
 
 @implementation SyncedVideoViewController
 
@@ -31,9 +32,11 @@ static float PHONE_STICKY_SIZE      = 150;
 //    InAppPurchaseManager *inAppPurchaseManager = [InAppPurchaseManager getInstance];
 //    [inAppPurchaseManager requestProductData];
  
-    [self fetchSongPackFromServer:@"SP-001"];
-    
-    //[self unzipDownload];
+    //[self fetchSongPackFromServer:@"SP-001"];
+
+    StoreViewController *storeView = [[[StoreViewController alloc] init] autorelease];
+    [storeView setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    [self presentModalViewController:storeView animated:YES];
 }
  
 -(IBAction)flipToVideoView:(id)sender{
@@ -94,38 +97,6 @@ static float PHONE_STICKY_SIZE      = 150;
     NSLog(@"xoff after snap:%i", xoff);
 }
 
-//////////////////////////////////
-//////////////////////////////////
-//////////////////////////////////
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // turn off portrait support
-    
-    if (interfaceOrientation == UIInterfaceOrientationPortrait)
-        return NO;
-    else
-        return YES;
-}
-
-
-- (void)viewDidLoad {
-	// Do any additional setup after loading the view, typically from a nib.
- 
-    [self setupSongPackViews];
-        
-    NSString *packId = nil;
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(notifySongPackPurchase:) 
-                                                 name:kInAppPurchaseManagerTransactionSucceededNotification
-                                               object:packId];
-    
-    self.networkQueue = [ASINetworkQueue queue];
-    
-    [super viewDidLoad];
-}
-
-
 
 
 - (void)setupSongPackViews{
@@ -144,6 +115,7 @@ static float PHONE_STICKY_SIZE      = 150;
      
         pageControl.numberOfPages = paths.count;
         pageControl.currentPage = 0;
+        pageControl.hidden = NO;
         
         //resize the width of the scroll view and background image   
         int bgImageHeight = scrollBackgroundImageView.bounds.size.height;
@@ -336,7 +308,6 @@ static float PHONE_STICKY_SIZE      = 150;
 
 - (void)fetchSongPackFromServer:(NSString *)packId{
     
-    
     [self.networkQueue retain];
     NSString *packFileName = [NSString stringWithFormat:@"%@.zip", packId];
     
@@ -356,7 +327,6 @@ static float PHONE_STICKY_SIZE      = 150;
     [request setDidFailSelector:@selector(gotSongPackResponseFail:)];
     [request setShowAccurateProgress:YES];
     
-    //[downloadProgressView setAlpha:1.0];
     [dlProgressViewPanel setAlpha:0.8];
     
     [self.networkQueue cancelAllOperations];
@@ -398,7 +368,6 @@ static float PHONE_STICKY_SIZE      = 150;
     if(success){
         NSLog(@"unzip complete...");
         
-        
     }else{
         NSLog(@"unzip failed!!!");
     }
@@ -426,6 +395,8 @@ static float PHONE_STICKY_SIZE      = 150;
     NSLog(@"Song pack response string: %@", req.responseString);
     NSLog(@"responseData %@",[req responseData]);
     NSLog(@"responseHeaders %@",[req responseHeaders]);
+    
+    [self cancelDownload:nil];
 }
 
 //////////////////////////////////
@@ -459,7 +430,36 @@ static float PHONE_STICKY_SIZE      = 150;
     NSLog(@"**************************************");
 }
 
+//////////////////////////////////
+//////////////////////////////////
+//////////////////////////////////
+//UIView overrides
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // turn off portrait support
+    
+    if (interfaceOrientation == UIInterfaceOrientationPortrait)
+        return NO;
+    else
+        return YES;
+}
+
+
+- (void)viewDidLoad {
+	// Do any additional setup after loading the view, typically from a nib.
+    
+    [self setupSongPackViews]; //loads any previously installed song packs
+    
+    NSString *packId = nil;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(notifySongPackPurchase:) 
+                                                 name:kInAppPurchaseManagerTransactionSucceededNotification
+                                               object:packId];
+    
+    self.networkQueue = [ASINetworkQueue queue];
+    
+    [super viewDidLoad];
+}
 
 - (void)viewDidUnload {
     [super viewDidUnload];
