@@ -19,12 +19,18 @@
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIImageView *scrollBackgroundImageView;
     IBOutlet DownloadProgressView *downloadProgressView;
+    IBOutlet UIView *dlProgressViewPanel;
+    
+    ASINetworkQueue *networkQueue;
 }
+
+@property(nonatomic, retain) ASINetworkQueue *networkQueue;
 
 
 - (IBAction)flipToVideoView:(id)sender;
 - (IBAction)changePage:(id)sender;
 - (IBAction)makePurchase:(id)sender;
+- (IBAction)cancelDownload:(id)sender;
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;
 

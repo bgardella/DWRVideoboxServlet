@@ -13,6 +13,7 @@
 - (void)setProgress:(float)newProgress{
     
     NSLog(@"dl progress: %f", newProgress);
+    [super setProgress:newProgress];
 }
 
 - (void)request:(ASIHTTPRequest *)request didReceiveBytes:(long long)bytes{

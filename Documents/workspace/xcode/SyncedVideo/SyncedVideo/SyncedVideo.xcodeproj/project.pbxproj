@@ -39,10 +39,6 @@
 		B564D5CF156CA05100E53258 /* drag_handle.png in Resources */ = {isa = PBXBuildFile; fileRef = B564D5CE156CA05100E53258 /* drag_handle.png */; };
 		B564D5D1156CA4FE00E53258 /* karaoke_panel.png in Resources */ = {isa = PBXBuildFile; fileRef = B564D5D0156CA4FE00E53258 /* karaoke_panel.png */; };
 		B565B0B5158FFE140040255F /* default.manifest in Resources */ = {isa = PBXBuildFile; fileRef = B565B0B4158FFE140040255F /* default.manifest */; };
-		B565B0B9159001660040255F /* pack_001.manifest in Resources */ = {isa = PBXBuildFile; fileRef = B565B0B8159001660040255F /* pack_001.manifest */; };
-		B565B0BB15915CF20040255F /* pack_002.manifest in Resources */ = {isa = PBXBuildFile; fileRef = B565B0BA15915CF20040255F /* pack_002.manifest */; };
-		B565B0BD159191610040255F /* pack_003.manifest in Resources */ = {isa = PBXBuildFile; fileRef = B565B0BC159191610040255F /* pack_003.manifest */; };
-		B565B0BF159191BC0040255F /* pack_004.manifest in Resources */ = {isa = PBXBuildFile; fileRef = B565B0BE159191BC0040255F /* pack_004.manifest */; };
 		B565B0C11592842E0040255F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B565B0C01592842D0040255F /* CFNetwork.framework */; };
 		B565B0C3159284450040255F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B565B0C2159284450040255F /* SystemConfiguration.framework */; };
 		B565B0C51592844F0040255F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B565B0C41592844F0040255F /* MobileCoreServices.framework */; };
@@ -59,6 +55,11 @@
 		B5716E751567846100616429 /* fullscreen_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = B5716E741567846100616429 /* fullscreen_btn.png */; };
 		B575A2CB1540DF3900349E74 /* cork_board_1000x800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B575A2CA1540DF3900349E74 /* cork_board_1000x800.jpg */; };
 		B5B85EE31593112500BF20BC /* DownloadProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B85EE21593112500BF20BC /* DownloadProgressView.m */; };
+		B5B85EF115939CCB00BF20BC /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = B5B85EE715939CCB00BF20BC /* ioapi.c */; };
+		B5B85EF215939CCB00BF20BC /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = B5B85EE915939CCB00BF20BC /* mztools.c */; };
+		B5B85EF315939CCB00BF20BC /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = B5B85EEB15939CCB00BF20BC /* unzip.c */; };
+		B5B85EF415939CCB00BF20BC /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = B5B85EED15939CCB00BF20BC /* zip.c */; };
+		B5B85EF515939CCB00BF20BC /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B85EF015939CCB00BF20BC /* SSZipArchive.m */; };
 		B5BF20911587AAB800120BE4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5BF20901587AAB800120BE4 /* StoreKit.framework */; };
 		B5BF2093158858E400120BE4 /* cork_board_seemless.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BF2092158858E400120BE4 /* cork_board_seemless.png */; };
 		B5BF209615885BA900120BE4 /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BF209515885BA900120BE4 /* InAppPurchaseManager.m */; };
@@ -121,10 +122,6 @@
 		B564D5CE156CA05100E53258 /* drag_handle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drag_handle.png; sourceTree = "<group>"; };
 		B564D5D0156CA4FE00E53258 /* karaoke_panel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = karaoke_panel.png; sourceTree = "<group>"; };
 		B565B0B4158FFE140040255F /* default.manifest */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default.manifest; sourceTree = "<group>"; };
-		B565B0B8159001660040255F /* pack_001.manifest */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pack_001.manifest; sourceTree = "<group>"; };
-		B565B0BA15915CF20040255F /* pack_002.manifest */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pack_002.manifest; sourceTree = "<group>"; };
-		B565B0BC159191610040255F /* pack_003.manifest */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pack_003.manifest; sourceTree = "<group>"; };
-		B565B0BE159191BC0040255F /* pack_004.manifest */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pack_004.manifest; sourceTree = "<group>"; };
 		B565B0C01592842D0040255F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		B565B0C2159284450040255F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B565B0C41592844F0040255F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -155,6 +152,17 @@
 		B575A2CA1540DF3900349E74 /* cork_board_1000x800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cork_board_1000x800.jpg; sourceTree = "<group>"; };
 		B5B85EE11593112500BF20BC /* DownloadProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadProgressView.h; sourceTree = "<group>"; };
 		B5B85EE21593112500BF20BC /* DownloadProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadProgressView.m; sourceTree = "<group>"; };
+		B5B85EE615939CCB00BF20BC /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		B5B85EE715939CCB00BF20BC /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		B5B85EE815939CCB00BF20BC /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		B5B85EE915939CCB00BF20BC /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		B5B85EEA15939CCB00BF20BC /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		B5B85EEB15939CCB00BF20BC /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		B5B85EEC15939CCB00BF20BC /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		B5B85EED15939CCB00BF20BC /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		B5B85EEE15939CCB00BF20BC /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		B5B85EEF15939CCB00BF20BC /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
+		B5B85EF015939CCB00BF20BC /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
 		B5BF20901587AAB800120BE4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B5BF2092158858E400120BE4 /* cork_board_seemless.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cork_board_seemless.png; sourceTree = "<group>"; };
 		B5BF209415885BA900120BE4 /* InAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseManager.h; sourceTree = "<group>"; };
@@ -320,10 +328,6 @@
 				B5046A9E15258998001E258C /* wheels.mp4 */,
 				B5046A9F15258998001E258C /* froggie.mp4 */,
 				B565B0B4158FFE140040255F /* default.manifest */,
-				B565B0B8159001660040255F /* pack_001.manifest */,
-				B565B0BA15915CF20040255F /* pack_002.manifest */,
-				B565B0BC159191610040255F /* pack_003.manifest */,
-				B565B0BE159191BC0040255F /* pack_004.manifest */,
 			);
 			name = video;
 			sourceTree = "<group>";
@@ -331,6 +335,7 @@
 		B565B0C8159284950040255F /* third party */ = {
 			isa = PBXGroup;
 			children = (
+				B5B85EE415939CCB00BF20BC /* SSZipArchive */,
 				B565B0E5159284EC0040255F /* External */,
 				B565B0C9159284B30040255F /* ASIAuthenticationDialog.h */,
 				B565B0CA159284B30040255F /* ASIAuthenticationDialog.m */,
@@ -372,6 +377,32 @@
 			);
 			name = Reachability;
 			path = "asi-http-request/External/Reachability";
+			sourceTree = "<group>";
+		};
+		B5B85EE415939CCB00BF20BC /* SSZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				B5B85EE515939CCB00BF20BC /* minizip */,
+				B5B85EEF15939CCB00BF20BC /* SSZipArchive.h */,
+				B5B85EF015939CCB00BF20BC /* SSZipArchive.m */,
+			);
+			path = SSZipArchive;
+			sourceTree = "<group>";
+		};
+		B5B85EE515939CCB00BF20BC /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				B5B85EE615939CCB00BF20BC /* crypt.h */,
+				B5B85EE715939CCB00BF20BC /* ioapi.c */,
+				B5B85EE815939CCB00BF20BC /* ioapi.h */,
+				B5B85EE915939CCB00BF20BC /* mztools.c */,
+				B5B85EEA15939CCB00BF20BC /* mztools.h */,
+				B5B85EEB15939CCB00BF20BC /* unzip.c */,
+				B5B85EEC15939CCB00BF20BC /* unzip.h */,
+				B5B85EED15939CCB00BF20BC /* zip.c */,
+				B5B85EEE15939CCB00BF20BC /* zip.h */,
+			);
+			path = minizip;
 			sourceTree = "<group>";
 		};
 		B5E606C2155ED1A00050C39D /* controls */ = {
@@ -477,10 +508,6 @@
 				B564D5D1156CA4FE00E53258 /* karaoke_panel.png in Resources */,
 				B5BF2093158858E400120BE4 /* cork_board_seemless.png in Resources */,
 				B565B0B5158FFE140040255F /* default.manifest in Resources */,
-				B565B0B9159001660040255F /* pack_001.manifest in Resources */,
-				B565B0BB15915CF20040255F /* pack_002.manifest in Resources */,
-				B565B0BD159191610040255F /* pack_003.manifest in Resources */,
-				B565B0BF159191BC0040255F /* pack_004.manifest in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,6 +535,11 @@
 				B565B0E4159284B30040255F /* ASINetworkQueue.m in Sources */,
 				B565B0EC159285280040255F /* Reachability.m in Sources */,
 				B5B85EE31593112500BF20BC /* DownloadProgressView.m in Sources */,
+				B5B85EF115939CCB00BF20BC /* ioapi.c in Sources */,
+				B5B85EF215939CCB00BF20BC /* mztools.c in Sources */,
+				B5B85EF315939CCB00BF20BC /* unzip.c in Sources */,
+				B5B85EF415939CCB00BF20BC /* zip.c in Sources */,
+				B5B85EF515939CCB00BF20BC /* SSZipArchive.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

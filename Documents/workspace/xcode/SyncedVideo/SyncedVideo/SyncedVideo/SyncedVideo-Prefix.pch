@@ -15,9 +15,10 @@
 #endif
 
 #define DEGREES_TO_RADIANS(d) (d * M_PI / 180)
-
+/*
 static CATransform3D CATransform3DMakePerspective(CGFloat z) {
     CATransform3D t = CATransform3DIdentity;
     t.m34 = - 1.0 / z;
     return t;
 }
+*/

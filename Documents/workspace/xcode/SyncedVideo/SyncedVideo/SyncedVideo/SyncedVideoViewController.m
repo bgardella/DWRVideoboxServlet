@@ -9,11 +9,11 @@
 #import "SyncedVideoViewController.h"
 #import "SyncedVideoAppDelegate.h"
 #import "VideoPlayerViewController.h"
-
+#import "SSZipArchive.h"
 
 @implementation SyncedVideoViewController
 
-static NSString *songPackPrefix     = @"com.sophieworld.sws.SP.";
+static NSString *SERVER_URL         = @"http://gardella.org/sophie/";
 static float PAD_SCROLL_IMG_WIDTH   = 1760;
 static float PHONE_SCROLL_IMG_WIDTH = 890;
 static float PAD_SCROLL_WIDTH       = 1024;
@@ -21,6 +21,7 @@ static float PHONE_SCROLL_WIDTH     = 480;
 static float PAD_STICKY_SIZE        = 300;
 static float PHONE_STICKY_SIZE      = 150;
 
+@synthesize networkQueue;
 
 -(IBAction)makePurchase:(id)sender{
     
@@ -31,6 +32,8 @@ static float PHONE_STICKY_SIZE      = 150;
 //    [inAppPurchaseManager requestProductData];
  
     [self fetchSongPackFromServer:@"SP-001"];
+    
+    //[self unzipDownload];
 }
  
 -(IBAction)flipToVideoView:(id)sender{
@@ -116,6 +119,8 @@ static float PHONE_STICKY_SIZE      = 150;
                                              selector:@selector(notifySongPackPurchase:) 
                                                  name:kInAppPurchaseManagerTransactionSucceededNotification
                                                object:packId];
+    
+    self.networkQueue = [ASINetworkQueue queue];
     
     [super viewDidLoad];
 }
@@ -331,19 +336,16 @@ static float PHONE_STICKY_SIZE      = 150;
 
 - (void)fetchSongPackFromServer:(NSString *)packId{
     
-    ASINetworkQueue *networkQueue = [ASINetworkQueue queue];
-    [networkQueue retain];
-    NSString *serverUrl = @"http://gardella.org/sophie/";
-    NSString *packFileName = @"sp-001.zip";
     
-    NSString *str = [NSString stringWithFormat:@"%@%@", serverUrl,packFileName];
+    [self.networkQueue retain];
+    NSString *packFileName = [NSString stringWithFormat:@"%@.zip", packId];
+    
+    NSString *str = [NSString stringWithFormat:@"%@%@", SERVER_URL,packFileName];
     NSURL *url = [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     ASIHTTPRequest *request = [[[ASIHTTPRequest alloc] initWithURL:url] autorelease];
     
-    NSArray *dirArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,    NSUserDomainMask, YES);
-    NSString *path = [NSString stringWithFormat:@"%@/test.zip", [dirArray objectAtIndex:0]];
-    NSString *tempPath =[NSString stringWithFormat:@"%@/test.zip.download", [dirArray objectAtIndex:0]];
-    
+    NSString *path = [NSString stringWithFormat:@"%@/%@", [self documentFilePath], packFileName];
+    NSString *tempPath =[NSString stringWithFormat:@"%@/%@.download", [self documentFilePath], packFileName];
     
     [request setDownloadDestinationPath:path];
     [request setTemporaryFileDownloadPath:tempPath];
@@ -354,25 +356,67 @@ static float PHONE_STICKY_SIZE      = 150;
     [request setDidFailSelector:@selector(gotSongPackResponseFail:)];
     [request setShowAccurateProgress:YES];
     
-    [downloadProgressView setAlpha:1.0];
+    //[downloadProgressView setAlpha:1.0];
+    [dlProgressViewPanel setAlpha:0.8];
     
-    [networkQueue cancelAllOperations];
-    [networkQueue setDownloadProgressDelegate:downloadProgressView];
-    [networkQueue setDelegate:self];
-    [networkQueue setRequestDidFinishSelector:@selector(queueComplete:)];
-    [networkQueue addOperation: request];
-    [networkQueue go];
+    [self.networkQueue cancelAllOperations];
+    [self.networkQueue setShowAccurateProgress:YES];
+    [self.networkQueue setDownloadProgressDelegate:downloadProgressView];
+    [self.networkQueue setDelegate:self];
+    [self.networkQueue setRequestDidFinishSelector:@selector(queueComplete:)];
+
+    [self.networkQueue addOperation: request];
+    [self.networkQueue go];
+}
+
+
+
+- (IBAction)cancelDownload:(id)sender{
+    
+    [self.networkQueue cancelAllOperations];
+    [dlProgressViewPanel setAlpha:0];
 }
 
 - (void)queueComplete:(ASINetworkQueue *)queue{
     NSLog(@"dl queue complete");
-    [downloadProgressView setAlpha:0];
+    [dlProgressViewPanel setAlpha:0];
+}
+
+- (void)unzipDownload:(NSString *)zipFilePath{
+    
+    //[self printDirectory:[self documentFilePath]];
+    //[self printDirectory:[self appBundleFilePath]];
+    
+    NSLog(@"Unziping file: %@", zipFilePath);
+    NSLog(@"To directory: %@", [self appBundleFilePath]);
+    BOOL success = [SSZipArchive unzipFileAtPath:zipFilePath toDestination:[self appBundleFilePath]];
+    
+    
+    //check your work
+    [self printDirectory:[self appBundleFilePath]];
+    
+    if(success){
+        NSLog(@"unzip complete...");
+        
+        
+    }else{
+        NSLog(@"unzip failed!!!");
+    }
+    
 }
 
 - (void)gotSongPackResponse:(ASIHTTPRequest *)req{
  
     NSString *path = req.downloadDestinationPath;
     NSLog(@"pack downloaded: %@", path);
+    
+    //check dl directory..
+    //[self printDirectory:[self documentFilePath]];
+    
+    [self unzipDownload:path];
+    
+    [self setupSongPackViews];
+    
 }
 
 - (void)gotSongPackResponseFail:(ASIHTTPRequest *)req{
@@ -384,6 +428,39 @@ static float PHONE_STICKY_SIZE      = 150;
     NSLog(@"responseHeaders %@",[req responseHeaders]);
 }
 
+//////////////////////////////////
+//////////////////////////////////
+//////////////////////////////////
+// UTILITY METHODS
+
+- (NSString *)documentFilePath{
+    NSArray *dirArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [dirArray objectAtIndex:0];
+}
+
+- (NSString *)appBundleFilePath{
+    return [[NSBundle mainBundle] bundlePath];
+}
+
+- (void)printDirectory:(NSString*)dirPath{
+    NSLog(@"**************************************");
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSDirectoryEnumerator *direnum = [manager enumeratorAtPath:dirPath];
+    NSString *filename;
+    NSError *attributesError = nil;
+    while ((filename = [direnum nextObject] )) {
+        NSString *fullPath = [dirPath stringByAppendingPathComponent:filename];
+        NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:fullPath error:&attributesError];
+        NSNumber *fileSizeNumber = [fileAttributes objectForKey:NSFileSize];
+        long long fileSize = [fileSizeNumber longLongValue];
+        
+        NSLog(@"%@ : %llx",fullPath, fileSize);
+    }
+    NSLog(@"**************************************");
+}
+
+
+
 - (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -392,6 +469,7 @@ static float PHONE_STICKY_SIZE      = 150;
 
 
 - (void)dealloc {
+    [self.networkQueue release];
     [super dealloc];
 }
      
