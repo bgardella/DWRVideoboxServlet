@@ -146,14 +146,13 @@ static float PHONE_STICKY_SIZE      = 150;
 
 - (void)addSongPackButtons:(NSArray *)songPackPaths{
     
-    for(int i=0; i<songPackPaths.count; i++){
+    for(int idx=0; idx<songPackPaths.count; idx++){
     //for (NSString *manifestFilePath in songPackPaths) {
-        NSString *manifestFilePath = [songPackPaths objectAtIndex:i];
+        NSString *manifestFilePath = [songPackPaths objectAtIndex:idx];
          NSLog(@"manifestFilePath: %@", manifestFilePath);
         
         NSData *fileContents = [NSData dataWithContentsOfFile:manifestFilePath];
         NSString *content = [NSString stringWithUTF8String:[fileContents bytes]];
-        //[fileContents release];
         NSArray *values = [content componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
         
         NSString *buttonOne;
@@ -186,7 +185,7 @@ static float PHONE_STICKY_SIZE      = 150;
             
         }
                 
-        [self createSongPackButtons:buttonOne :btnOneTitle :buttonTwo :btnTwoTitle :packId];
+        [self createSongPackButtons:buttonOne :btnOneTitle :buttonTwo :btnTwoTitle :idx];
     }
     
 }
@@ -195,22 +194,22 @@ static float PHONE_STICKY_SIZE      = 150;
                              :  (NSString *)btnOneTitle 
                              :  (NSString *)buttonId2
                              :  (NSString *)btnTwoTitle
-                             :  (NSString *)packId{
-    NSLog(@"CREATE button one: %@ button two: %@ pack id: %@", buttonId1, buttonId2, packId);
+                             :  (int)index{
+    NSLog(@"CREATE button one: %@ button two: %@ index: %i", buttonId1, buttonId2, index);
     
-    if(packId.intValue > 0){
+    if(index > 0){
 
         NSString *imgPath = [[NSBundle mainBundle] pathForResource:@"post_it_big" ofType:@"png"];
         UIImage *image = [UIImage imageWithContentsOfFile:imgPath];
         
         int fontSize1 = 29;
         int fontSize2 = 29;
-        int xbtn1 = 73+(PHONE_SCROLL_WIDTH*packId.intValue);
-        int xbtn2 = 267+(PHONE_SCROLL_WIDTH*packId.intValue);
+        int xbtn1 = 73+(PHONE_SCROLL_WIDTH*index);
+        int xbtn2 = 267+(PHONE_SCROLL_WIDTH*index);
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){ //ipad
-            xbtn1 = 147+(PAD_SCROLL_WIDTH*packId.intValue);
-            xbtn2 = 617+(PAD_SCROLL_WIDTH*packId.intValue);
+            xbtn1 = 147+(PAD_SCROLL_WIDTH*index);
+            xbtn2 = 617+(PAD_SCROLL_WIDTH*index);
             
             fontSize1 = 60;
             fontSize2 = 60;

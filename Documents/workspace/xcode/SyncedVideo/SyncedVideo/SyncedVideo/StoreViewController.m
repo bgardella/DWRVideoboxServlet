@@ -15,15 +15,22 @@
 
 @implementation StoreViewController
 
-static float IPHONE_FONT_SIZE = 14;
-static float IPAD_FONT_SIZE = 25;
+static float IPHONE_FONT_SIZE = 12;
+static float IPAD_FONT_SIZE = 16;
 
 @synthesize isIPhone;
 @synthesize products;
+@synthesize reDownloadId;
+
 
 - (IBAction)cancel:(id)sender{
     [self dismissModalViewControllerAnimated:YES];
 }
+
+- (void)notifySongPackPurchase:(NSNotification*)notification {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 
 - (void)displayProducts:(NSNotification*)notification {    
     
@@ -72,6 +79,13 @@ static float IPAD_FONT_SIZE = 25;
                                              selector:@selector(displayProducts:) 
                                                  name:kInAppPurchaseManagerProductsFetchedNotification
                                                object:productList];
+    
+    NSString *packId = nil;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(notifySongPackPurchase:) 
+                                                 name:kInAppPurchaseManagerTransactionSucceededNotification
+                                               object:packId];
+    
 }
 
 - (void)viewDidUnload
@@ -90,6 +104,81 @@ static float IPAD_FONT_SIZE = 25;
         return YES;
 }
 
+- (BOOL)isPackInstalled:(NSString *)packId{
+    NSArray *paths = [[NSBundle mainBundle] pathsForResourcesOfType:@"manifest" inDirectory:nil];
+    for(int i=0; i<paths.count; i++){
+        NSString *manifestFilePath = [paths objectAtIndex:i];
+        //NSLog(@"manifest: %@", manifestFilePath);
+        
+        NSData *fileContents = [NSData dataWithContentsOfFile:manifestFilePath];
+        NSString *content = [NSString stringWithUTF8String:[fileContents bytes]];
+        NSArray *values = [content componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+        for(NSString *line in values){
+            if([line hasPrefix:@"product_id"]){
+                NSArray *arr = [line componentsSeparatedByString:@"="];
+                NSString *installedId = [arr objectAtIndex:1];
+                //NSLog(@"is pack installed: %@ == %@", packId, installedId);
+                if([packId isEqualToString:installedId]){
+                    return YES;
+                }
+            }
+        }
+    }
+    return NO;
+}
+
+- (BOOL)isPackPurchased:(NSString *)packId{
+    // check the defaults for a purchase receipt
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSString *prodReceipt = [prefs stringForKey:packId];
+    if(prodReceipt){
+        return YES;
+    }
+    return NO;
+}
+
+
+- (void)presentInstalledAlert{
+    
+    installedAlert =  [[UIAlertView alloc] 
+                                         initWithTitle:nil
+                                         message:@"This song pack is already installed."
+                                         delegate:self 
+                                         cancelButtonTitle:nil
+                                         otherButtonTitles:@"OK", nil]; 
+    installedAlert.delegate = self;
+    [installedAlert show];
+    [installedAlert release];
+}
+
+- (void)presentPurchasedAlert{
+    
+    purchasedAlert =  [[UIAlertView alloc] 
+                           initWithTitle:nil
+                           message:@"This song pack has already been purchased. Would you like to download it again?"
+                           delegate:self 
+                           cancelButtonTitle:nil
+                           otherButtonTitles:@"YES", @"NO", nil]; 
+    purchasedAlert.delegate = self;
+    [purchasedAlert show];
+    [purchasedAlert release];
+}
+
+#pragma mark AlertView Delegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (alertView==purchasedAlert) {
+        if (buttonIndex==0) { //YES -- re-download
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseManagerTransactionSucceededNotification 
+                                                                object:reDownloadId];
+            
+            [reDownloadId release];
+            
+        }
+    }
+    
+}
 
 ///////////////////////////
 ///////////////////////////
@@ -109,35 +198,27 @@ static float IPAD_FONT_SIZE = 25;
     
     UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     if(self.products == nil){
         cell.textLabel.text = @"...";
     }else {
-        //NSLog(@"prod list desc: %@", self.products);
-        //NSLog(@"index path row num: %i", indexPath.row);
-        /*
-        for(SKProduct *prod in self.products){
-            if(prod){
-                NSLog(@"xProduct title: %@" , prod.localizedTitle);
-                NSLog(@"xProduct description: %@" , prod.localizedDescription);
-                NSLog(@"xProduct price: %@" , prod.price);
-                NSLog(@"xProduct id: %@" , prod.productIdentifier);
-            }
-        }
-        */
-        
         SKProduct *skProduct = [self.products objectAtIndex:[indexPath row]];
         
         if(isIPhone){
-            cell.textLabel.font = [UIFont fontWithName:@"Noteworthy" size:IPHONE_FONT_SIZE];
+            cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:IPHONE_FONT_SIZE];
         }else{
-            cell.textLabel.font = [UIFont fontWithName:@"Noteworthy" size:IPAD_FONT_SIZE];
+            cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:IPAD_FONT_SIZE]; 
         }
-        cell.textLabel.text = [NSString stringWithFormat:@"($%@) %@", 
-                                            skProduct.price,
-                                            skProduct.localizedDescription];
+        
+        if([self isPackInstalled:skProduct.productIdentifier] ||
+           [self isPackPurchased:skProduct.productIdentifier]){
+            cell.accessoryType = UITableViewCellAccessoryCheckmark; //for purchased items
+        }
+        
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"$%@", skProduct.price];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@", skProduct.localizedDescription];
     }
     
     return cell;
@@ -148,10 +229,18 @@ static float IPAD_FONT_SIZE = 25;
     SKProduct *skProduct = [self.products objectAtIndex:[indexPath row]];
     
     NSLog(@"Tapped cell %@",skProduct.productIdentifier);
-    
-     //call manager singleton
-     InAppPurchaseManager *inAppPurchaseManager = [InAppPurchaseManager getInstance];
-     [inAppPurchaseManager makePurchase:skProduct];
+   
+    if([self isPackPurchased:skProduct.productIdentifier] && 
+       ![self isPackInstalled:skProduct.productIdentifier]){
+        reDownloadId = [skProduct.productIdentifier retain];
+        [self presentPurchasedAlert];
+    }else if([self isPackInstalled:skProduct.productIdentifier]){
+        [self presentInstalledAlert];
+    }else {
+        //call manager singleton
+        InAppPurchaseManager *inAppPurchaseManager = [InAppPurchaseManager getInstance];
+        [inAppPurchaseManager makePurchase:skProduct];
+    }
 }
 
 

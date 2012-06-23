@@ -8,16 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StoreViewController : UIViewController  <UITableViewDelegate, UITableViewDataSource>{
+@interface StoreViewController : UIViewController  
+                <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>{
 @private
     BOOL isIPhone;
     IBOutlet UITableView *tableView;
     NSArray *products;
+    UIAlertView *purchasedAlert;
+    UIAlertView *installedAlert;
+    NSString *reDownloadId;
 }
 
 @property (nonatomic, assign) BOOL isIPhone;
 @property (nonatomic, retain) NSArray *products;
-
+@property (nonatomic, retain) NSString *reDownloadId;
 
 - (IBAction)cancel:(id)sender;
 

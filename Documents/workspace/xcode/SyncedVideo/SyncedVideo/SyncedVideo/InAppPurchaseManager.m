@@ -191,6 +191,9 @@ static NSString *songPackPrefix = @"com.sophieworld.sws.SP.";
 // saves a record of the transaction by storing the receipt to disk
 //
 - (void)recordTransaction:(SKPaymentTransaction *)transaction{
+    
+    // save:  transaction.payment.productIdentifier
+    
     //if ([transaction.payment.productIdentifier isEqualToString:kInAppPurchaseProUpgradeProductId])
     //{
         // save the transaction receipt to disk
