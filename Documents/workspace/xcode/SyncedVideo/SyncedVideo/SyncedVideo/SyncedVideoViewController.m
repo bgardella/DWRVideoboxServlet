@@ -97,30 +97,31 @@ static float PHONE_STICKY_SIZE      = 150;
 - (void)setupSongPackViews{
     
     // check for installed song packs
-    NSArray *paths = [[NSBundle mainBundle] pathsForResourcesOfType:@"manifest" inDirectory:nil];
+    NSArray *paths = [self manifestFilePaths];
     NSLog(@"Number of song packs installed: %i", paths.count);
  
     for(NSString *path in paths){
         NSLog(@"pack path: %@", path);
     }
     
-    if(paths.count > 1){
+    if(paths.count > 0){
+        int packCount = paths.count+1;
         //scrollable corkboard
         [scrollView setScrollEnabled:YES];
      
-        pageControl.numberOfPages = paths.count;
+        pageControl.numberOfPages = packCount;
         pageControl.currentPage = 0;
         pageControl.hidden = NO;
         
-        //resize the width of the scroll view and background image   
+        //resize the width of the scroll view and background image
         int bgImageHeight = scrollBackgroundImageView.bounds.size.height;
         int bgScrollHeight = scrollView.bounds.size.height;
-        int imgWidthAdjusted = PHONE_SCROLL_IMG_WIDTH*paths.count;
-        int widthAdjusted = PHONE_SCROLL_WIDTH*paths.count;
+        int imgWidthAdjusted = PHONE_SCROLL_IMG_WIDTH*packCount;
+        int widthAdjusted = PHONE_SCROLL_WIDTH*packCount;
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){ //ipad
-            imgWidthAdjusted = PAD_SCROLL_IMG_WIDTH*paths.count;
-            widthAdjusted = PAD_SCROLL_WIDTH*paths.count;
+            imgWidthAdjusted = PAD_SCROLL_IMG_WIDTH*packCount;
+            widthAdjusted = PAD_SCROLL_WIDTH*packCount;
         }
         
         [scrollBackgroundImageView setBounds:CGRectMake(scrollBackgroundImageView.bounds.origin.x, 
@@ -182,10 +183,9 @@ static float PHONE_STICKY_SIZE      = 150;
                 NSArray *arr = [line componentsSeparatedByString:@"="];
                 packId = [arr objectAtIndex:1];
             }
-            
         }
                 
-        [self createSongPackButtons:buttonOne :btnOneTitle :buttonTwo :btnTwoTitle :idx];
+        [self createSongPackButtons:buttonOne :btnOneTitle :buttonTwo :btnTwoTitle :idx+1];
     }
     
 }
@@ -197,8 +197,6 @@ static float PHONE_STICKY_SIZE      = 150;
                              :  (int)index{
     NSLog(@"CREATE button one: %@ button two: %@ index: %i", buttonId1, buttonId2, index);
     
-    if(index > 0){
-
         NSString *imgPath = [[NSBundle mainBundle] pathForResource:@"post_it_big" ofType:@"png"];
         UIImage *image = [UIImage imageWithContentsOfFile:imgPath];
         
@@ -275,8 +273,6 @@ static float PHONE_STICKY_SIZE      = 150;
         [songButton2 addSubview:label2];
         [songButton2 setBackgroundImage:image forState:UIControlStateNormal];
         [scrollView addSubview:songButton2];
-        
-    }
 }
 
 - (void)notifySongPackPurchase:(NSNotification*)notification {
@@ -349,15 +345,14 @@ static float PHONE_STICKY_SIZE      = 150;
 - (void)unzipDownload:(NSString *)zipFilePath{
     
     //[self printDirectory:[self documentFilePath]];
-    //[self printDirectory:[self appBundleFilePath]];
     
     NSLog(@"Unziping file: %@", zipFilePath);
-    NSLog(@"To directory: %@", [self appBundleFilePath]);
-    BOOL success = [SSZipArchive unzipFileAtPath:zipFilePath toDestination:[self appBundleFilePath]];
+    NSLog(@"To directory: %@", [self documentFilePath]);
+    BOOL success = [SSZipArchive unzipFileAtPath:zipFilePath toDestination:[self documentFilePath]];
     
     
     //check your work
-    [self printDirectory:[self appBundleFilePath]];
+    [self printDirectory:[self documentFilePath]];
     
     if(success){
         NSLog(@"unzip complete...");
@@ -403,8 +398,25 @@ static float PHONE_STICKY_SIZE      = 150;
     return [dirArray objectAtIndex:0];
 }
 
-- (NSString *)appBundleFilePath{
-    return [[NSBundle mainBundle] bundlePath];
+- (NSArray *)manifestFilePaths{
+    NSFileManager *filemgr;
+    filemgr = [NSFileManager defaultManager];
+    
+    NSArray *docList = [filemgr contentsOfDirectoryAtPath:[self documentFilePath] error:nil];
+    
+    NSUInteger counter = 0;
+    NSMutableArray *manifestArr = [[NSMutableArray alloc] initWithCapacity:5];
+    for(int i = 0; i < docList.count; i++){
+        NSString *filePath = [docList objectAtIndex: i];
+        if([filePath hasSuffix:@"manifest"]){
+            [manifestArr insertObject:[NSString stringWithFormat:@"%@/%@", [self documentFilePath],filePath]            
+                              atIndex:counter];
+            counter++;
+        }
+    }
+    [filemgr release];
+    
+    return manifestArr;
 }
 
 - (void)printDirectory:(NSString*)dirPath{

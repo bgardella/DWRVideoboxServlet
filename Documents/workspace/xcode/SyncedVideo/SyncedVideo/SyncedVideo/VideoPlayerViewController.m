@@ -98,6 +98,9 @@ static int VIDEO_BTN_IDX = 1001;
     }
     
     NSString *moviePath = [[NSBundle mainBundle] pathForResource:vidTitle ofType:@"mp4"];
+    if(moviePath == nil){
+        moviePath = [NSString stringWithFormat:@"%@/%@.%@", [self documentFilePath], vidTitle, @"mp4"];
+    }
     
     // Setup AVPlayer
     //status check
@@ -136,9 +139,19 @@ static int VIDEO_BTN_IDX = 1001;
     
 }
 
+- (NSString *)documentFilePath{
+    NSArray *dirArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [dirArray objectAtIndex:0];
+}
+
+
 - (void)parseLRCFile:(NSString *)lrcTitle{
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:lrcTitle ofType:@"lrc"];
+    if(filePath == nil){
+        filePath = [NSString stringWithFormat:@"%@/%@.%@", [self documentFilePath], lrcTitle, @"lrc"];
+    }
+    
     NSData *fileContents = [NSData dataWithContentsOfFile:filePath];
     NSString *content = [NSString stringWithUTF8String:[fileContents bytes]];
     NSArray *values = [content componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];

@@ -104,8 +104,40 @@ static float IPAD_FONT_SIZE = 16;
         return YES;
 }
 
+//////////////////////////////////
+//////////////////////////////////
+//////////////////////////////////
+// UTILITY METHODS : duplicated in SyncedVideoViewController -- must fix!!!
+
+- (NSString *)documentFilePath{
+    NSArray *dirArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [dirArray objectAtIndex:0];
+}
+
+
+- (NSArray *)manifestFilePaths{
+    NSFileManager *filemgr;
+    filemgr = [NSFileManager defaultManager];
+    
+    NSArray *docList = [filemgr contentsOfDirectoryAtPath:[self documentFilePath] error:nil];
+    
+    NSUInteger counter = 0;
+    NSMutableArray *manifestArr = [[NSMutableArray alloc] initWithCapacity:5];
+    for(int i = 0; i < docList.count; i++){
+        NSString *fileName = [docList objectAtIndex: i];
+        if([fileName hasSuffix:@"manifest"]){
+            [manifestArr insertObject:[NSString stringWithFormat:@"%@/%@", [self documentFilePath],fileName] 
+                              atIndex:counter];
+            counter++;
+        }
+    }
+    [filemgr release];
+    
+    return manifestArr;
+}
+
 - (BOOL)isPackInstalled:(NSString *)packId{
-    NSArray *paths = [[NSBundle mainBundle] pathsForResourcesOfType:@"manifest" inDirectory:nil];
+    NSArray *paths = [self manifestFilePaths];
     for(int i=0; i<paths.count; i++){
         NSString *manifestFilePath = [paths objectAtIndex:i];
         //NSLog(@"manifest: %@", manifestFilePath);
@@ -155,7 +187,7 @@ static float IPAD_FONT_SIZE = 16;
     
     purchasedAlert =  [[UIAlertView alloc] 
                            initWithTitle:nil
-                           message:@"This song pack has already been purchased. Would you like to download it again?"
+                           message:@"This song pack has already been purchased. Would you like to download it again?  You will not be charged for this."
                            delegate:self 
                            cancelButtonTitle:nil
                            otherButtonTitles:@"YES", @"NO", nil]; 
