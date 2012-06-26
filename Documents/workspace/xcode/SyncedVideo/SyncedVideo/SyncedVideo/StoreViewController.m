@@ -3,11 +3,10 @@
 //  SyncedVideo
 //
 //  Created by Ben Gardella on 6/22/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Sophie World LLC. All rights reserved.
 //
 
 #import "StoreViewController.h"
-#import "InAppPurchaseManager.h"
 
 @interface StoreViewController ()
 
@@ -46,6 +45,7 @@ static float IPAD_FONT_SIZE = 16;
     }
     */
     [tableView reloadData];
+    [storeWait setHidden:YES];
 }
 
 ///////////////////////////
@@ -104,40 +104,10 @@ static float IPAD_FONT_SIZE = 16;
         return YES;
 }
 
-//////////////////////////////////
-//////////////////////////////////
-//////////////////////////////////
-// UTILITY METHODS : duplicated in SyncedVideoViewController -- must fix!!!
 
-- (NSString *)documentFilePath{
-    NSArray *dirArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    return [dirArray objectAtIndex:0];
-}
-
-
-- (NSArray *)manifestFilePaths{
-    NSFileManager *filemgr;
-    filemgr = [NSFileManager defaultManager];
-    
-    NSArray *docList = [filemgr contentsOfDirectoryAtPath:[self documentFilePath] error:nil];
-    
-    NSUInteger counter = 0;
-    NSMutableArray *manifestArr = [[NSMutableArray alloc] initWithCapacity:5];
-    for(int i = 0; i < docList.count; i++){
-        NSString *fileName = [docList objectAtIndex: i];
-        if([fileName hasSuffix:@"manifest"]){
-            [manifestArr insertObject:[NSString stringWithFormat:@"%@/%@", [self documentFilePath],fileName] 
-                              atIndex:counter];
-            counter++;
-        }
-    }
-    [filemgr release];
-    
-    return manifestArr;
-}
 
 - (BOOL)isPackInstalled:(NSString *)packId{
-    NSArray *paths = [self manifestFilePaths];
+    NSArray *paths = [Utilities manifestFilePaths];
     for(int i=0; i<paths.count; i++){
         NSString *manifestFilePath = [paths objectAtIndex:i];
         //NSLog(@"manifest: %@", manifestFilePath);
@@ -235,6 +205,7 @@ static float IPAD_FONT_SIZE = 16;
     
     if(self.products == nil){
         cell.textLabel.text = @"...";
+        storeWait.alpha = 1.0;
     }else {
         SKProduct *skProduct = [self.products objectAtIndex:[indexPath row]];
         

@@ -3,7 +3,7 @@
 //  SyncedVideo
 //
 //  Created by Ben Gardella on 5/13/12.
-//  Copyright (c) 2012 Emmett's Older Brother Prod. All rights reserved.
+//  Copyright (c) 2012 Sophie World LLC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -14,6 +14,7 @@
 #import <AVFoundation/AVAsset.h>
 #import "VideoControlView.h"
 #import "KaraokeView.h"
+#import "Utilities.h"
 
 static void *AVSPPlayerLayerReadyForDisplay = &AVSPPlayerLayerReadyForDisplay;
 
@@ -42,12 +43,13 @@ static void *AVSPPlayerLayerReadyForDisplay = &AVSPPlayerLayerReadyForDisplay;
     NSMutableArray *karaokeLyricArr;
 }
 
-@property(nonatomic, retain) AVPlayer *player;
-@property(nonatomic, retain) AVPlayerLayer *playerLayer;
+@property(nonatomic, assign) AVPlayer *player;
+@property(nonatomic, assign) AVPlayerLayer *playerLayer;
 @property (nonatomic, retain) IBOutlet VideoControlView *videoControlView;
 @property (nonatomic, retain) IBOutlet KaraokeView *karaokeView;
-@property (nonatomic, retain) id timeObserver;
-@property (nonatomic, retain) id timeCodeObserver;
+@property (nonatomic, assign) id timeObserver;
+@property (nonatomic, assign) id timeCodeObserver;
+
 @property (nonatomic, assign) CMTime movieDuration;
 @property (nonatomic, assign) BOOL isIPhone;
 

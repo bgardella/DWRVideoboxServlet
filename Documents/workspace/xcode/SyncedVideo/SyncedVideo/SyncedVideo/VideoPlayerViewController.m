@@ -3,7 +3,7 @@
 //  SyncedVideo
 //
 //  Created by Ben Gardella on 5/13/12.
-//  Copyright (c) 2012 Emmett's Older Brother Prod. All rights reserved.
+//  Copyright (c) 2012 Sophie World LLC. All rights reserved.
 //
 
 #import "VideoPlayerViewController.h"
@@ -99,14 +99,15 @@ static int VIDEO_BTN_IDX = 1001;
     
     NSString *moviePath = [[NSBundle mainBundle] pathForResource:vidTitle ofType:@"mp4"];
     if(moviePath == nil){
-        moviePath = [NSString stringWithFormat:@"%@/%@.%@", [self documentFilePath], vidTitle, @"mp4"];
+        moviePath = [NSString stringWithFormat:@"%@/%@.%@", [Utilities documentFilePath], vidTitle, @"mp4"];
     }
     
     // Setup AVPlayer
     //status check
     if(self.player){
-        [self.player pause];
+        [self stopAVPlayer];
         [self.player release];
+        //[self.playerLayer release];
     }
     
     self.player = [[[AVPlayer alloc] initWithURL:[NSURL fileURLWithPath:moviePath]] autorelease];
@@ -139,17 +140,11 @@ static int VIDEO_BTN_IDX = 1001;
     
 }
 
-- (NSString *)documentFilePath{
-    NSArray *dirArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    return [dirArray objectAtIndex:0];
-}
-
-
 - (void)parseLRCFile:(NSString *)lrcTitle{
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:lrcTitle ofType:@"lrc"];
     if(filePath == nil){
-        filePath = [NSString stringWithFormat:@"%@/%@.%@", [self documentFilePath], lrcTitle, @"lrc"];
+        filePath = [NSString stringWithFormat:@"%@/%@.%@", [Utilities documentFilePath], lrcTitle, @"lrc"];
     }
     
     NSData *fileContents = [NSData dataWithContentsOfFile:filePath];

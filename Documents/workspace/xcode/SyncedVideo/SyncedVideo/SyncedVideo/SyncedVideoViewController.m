@@ -3,14 +3,9 @@
 //  SyncedVideo
 //
 //  Created by Ben Gardella on 3/29/12.
-//  Copyright (c) 2012 Emmett's Older Brother Prod. All rights reserved.
+//  Copyright (c) 2012 Sophie World LLC. All rights reserved.
 //
-
 #import "SyncedVideoViewController.h"
-#import "SyncedVideoAppDelegate.h"
-#import "VideoPlayerViewController.h"
-#import "SSZipArchive.h"
-#import "StoreViewController.h"
 
 @implementation SyncedVideoViewController
 
@@ -97,7 +92,7 @@ static float PHONE_STICKY_SIZE      = 150;
 - (void)setupSongPackViews{
     
     // check for installed song packs
-    NSArray *paths = [self manifestFilePaths];
+    NSArray *paths = [Utilities manifestFilePaths];
     NSLog(@"Number of song packs installed: %i", paths.count);
  
     for(NSString *path in paths){
@@ -305,8 +300,8 @@ static float PHONE_STICKY_SIZE      = 150;
     NSURL *url = [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     ASIHTTPRequest *request = [[[ASIHTTPRequest alloc] initWithURL:url] autorelease];
     
-    NSString *path = [NSString stringWithFormat:@"%@/%@", [self documentFilePath], packFileName];
-    NSString *tempPath =[NSString stringWithFormat:@"%@/%@.download", [self documentFilePath], packFileName];
+    NSString *path = [NSString stringWithFormat:@"%@/%@", [Utilities documentFilePath], packFileName];
+    NSString *tempPath =[NSString stringWithFormat:@"%@/%@.download", [Utilities documentFilePath], packFileName];
     
     [request setDownloadDestinationPath:path];
     [request setTemporaryFileDownloadPath:tempPath];
@@ -347,12 +342,11 @@ static float PHONE_STICKY_SIZE      = 150;
     //[self printDirectory:[self documentFilePath]];
     
     NSLog(@"Unziping file: %@", zipFilePath);
-    NSLog(@"To directory: %@", [self documentFilePath]);
-    BOOL success = [SSZipArchive unzipFileAtPath:zipFilePath toDestination:[self documentFilePath]];
-    
+    NSLog(@"To directory: %@", [Utilities documentFilePath]);
+    BOOL success = [SSZipArchive unzipFileAtPath:zipFilePath toDestination:[Utilities documentFilePath]];
     
     //check your work
-    [self printDirectory:[self documentFilePath]];
+    [Utilities printDirectory:[Utilities documentFilePath]];
     
     if(success){
         NSLog(@"unzip complete...");
@@ -388,53 +382,6 @@ static float PHONE_STICKY_SIZE      = 150;
     [self cancelDownload:nil];
 }
 
-//////////////////////////////////
-//////////////////////////////////
-//////////////////////////////////
-// UTILITY METHODS
-
-- (NSString *)documentFilePath{
-    NSArray *dirArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    return [dirArray objectAtIndex:0];
-}
-
-- (NSArray *)manifestFilePaths{
-    NSFileManager *filemgr;
-    filemgr = [NSFileManager defaultManager];
-    
-    NSArray *docList = [filemgr contentsOfDirectoryAtPath:[self documentFilePath] error:nil];
-    
-    NSUInteger counter = 0;
-    NSMutableArray *manifestArr = [[NSMutableArray alloc] initWithCapacity:5];
-    for(int i = 0; i < docList.count; i++){
-        NSString *filePath = [docList objectAtIndex: i];
-        if([filePath hasSuffix:@"manifest"]){
-            [manifestArr insertObject:[NSString stringWithFormat:@"%@/%@", [self documentFilePath],filePath]            
-                              atIndex:counter];
-            counter++;
-        }
-    }
-    [filemgr release];
-    
-    return manifestArr;
-}
-
-- (void)printDirectory:(NSString*)dirPath{
-    NSLog(@"**************************************");
-    NSFileManager *manager = [NSFileManager defaultManager];
-    NSDirectoryEnumerator *direnum = [manager enumeratorAtPath:dirPath];
-    NSString *filename;
-    NSError *attributesError = nil;
-    while ((filename = [direnum nextObject] )) {
-        NSString *fullPath = [dirPath stringByAppendingPathComponent:filename];
-        NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:fullPath error:&attributesError];
-        NSNumber *fileSizeNumber = [fileAttributes objectForKey:NSFileSize];
-        long long fileSize = [fileSizeNumber longLongValue];
-        
-        NSLog(@"%@ : %llx",fullPath, fileSize);
-    }
-    NSLog(@"**************************************");
-}
 
 //////////////////////////////////
 //////////////////////////////////
