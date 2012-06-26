@@ -314,6 +314,9 @@ static float PHONE_STICKY_SIZE      = 150;
     
     [dlProgressViewPanel setAlpha:0.8];
     
+    // Disable the idle timer
+    [[UIApplication sharedApplication] setIdleTimerDisabled: YES];
+    
     [self.networkQueue cancelAllOperations];
     [self.networkQueue setShowAccurateProgress:YES];
     [self.networkQueue setDownloadProgressDelegate:downloadProgressView];
@@ -366,6 +369,9 @@ static float PHONE_STICKY_SIZE      = 150;
     //[self printDirectory:[self documentFilePath]];
     
     [self unzipDownload:path];
+    
+    // re-enable the idle timer
+    [[UIApplication sharedApplication] setIdleTimerDisabled: NO];
     
     [self setupSongPackViews];
     
