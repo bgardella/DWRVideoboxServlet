@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<project name="DwrVideoboxServlet" basedir="." default="build">
+
+    <property name="src.dir" value="src"/>
+    <property name="classes.dir" value="classes"/>
+	<property name="jar.dir" value="build"/>
+    <property name="name" value="dwr-videobox-servlet"/>
+	
+    <path id="master-classpath">
+        <fileset dir="lib">
+            <include name="*.jar"/>
+        </fileset>
+        <pathelement path="${classes.dir}"/>
+    </path>
+
+
+
+	<target name="clean" description="clean all compiled files">
+		<delete dir="${classes.dir}"/>
+		<delete dir="output"/>
+	</target>
+	
+    <target name="build" depends="clean" description="Compile main source tree java files">
+        <mkdir dir="${classes.dir}"/>
+        <javac destdir="${classes.dir}" source="1.5" target="1.5" debug="true"
+               deprecation="false" optimize="false" failonerror="true">
+            <src path="${src.dir}"/>
+            <classpath refid="master-classpath"/>
+        </javac>
+    </target>
+
+  <target name="war" depends="build">
+    <mkdir dir="output/ant/webinflib"/>
+    <copy flatten="true" todir="output/ant/webinflib">
+      <path refid="master-classpath"/>
+    </copy>
+    <copy todir="output/ant/webapp">
+      <fileset dir="webapp"/>
+    </copy>
+    <war destfile="output/ant/${ant.project.name}.war">
+      <classes dir="classes"/>
+      <lib dir="output/ant/webinflib"/>
+      <fileset dir="output/ant/webapp"/>
+    </war>
+  </target>
+
+</project>
