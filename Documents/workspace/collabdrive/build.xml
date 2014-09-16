@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="collabdrive" basedir=".">
+
+	<property name="classes.dir" value="webapp/WEB-INF/classes"/>
+	<property name="name" value="dayswithoutsunshine"/>
+	
+  <path id="master-classpath">
+      <fileset dir="webapp/WEB-INF/lib">
+          <include name="*.jar"/>
+      </fileset>
+      <pathelement path="${classes.dir}"/>
+  </path>
+
+	<target name="clean" description="clean all compiled files">
+	    <delete dir="${classes.dir}"/>
+	    <delete file="${war.dir}/${name}.war"/>
+	 	  <delete dir="output"/>
+	</target>
+	
+	<target name="sass">
+	    <condition property="sass.path" value="/usr/bin/sass">
+	       <os family="mac"/>
+	    </condition>
+	    <condition property="sass.path" value="/usr/local/bin/sass">
+	           <os family="unix"/>
+	    </condition>
+	    
+	    <echo message="SASS path is: ${sass.path}"/>
+	    
+	    <exec executable="${sass.path}" failonerror="true">
+	      <arg line="webapp/css/sass/base.sass webapp/css/base.css"/>
+	    </exec>
+	</target>
+	
+	<target name="compile" depends="sass" description="Compiles .java files in src/ using jars from lib/ and dependencies.">
+    <echo message="COMPILING ${ant.project.name}"/>
+    <mkdir dir="${classes.dir}"/>
+    <javac destdir="${classes.dir}"
+           includeantruntime="false"
+           debug="true"
+           debuglevel="lines,vars,source"
+           fork="true"
+           memoryinitialsize="256m"
+           memorymaximumsize="256m">
+      <src path="src"/>
+      <classpath refid="master-classpath"/>
+    </javac>
+  </target>
+	
+	<target name="test" depends="compile">
+		<junit>
+			  <classpath refid="master-classpath"/>
+  			<formatter type="brief" usefile="false" />
+		    <test name="phor.uber.tests.SearchControllerTest"/>
+		</junit>
+	</target>
+	
+  <target name="war" depends="compile" description="makes war file">
+    <mkdir dir="output/ant/webinflib"/>
+    <copy flatten="true" todir="output/ant/webinflib">
+      <path>
+    	  <fileset dir="webapp/WEB-INF/lib">
+           <include name="**/*.jar"/>
+      	</fileset>
+      </path>
+    </copy>
+    <copy todir="output/ant/webapp">
+      <fileset dir="webapp"/>
+    </copy>
+  	<copy tofile="output/ant/webapp/WEB-INF/environment.properties" file="conf/environment/localhost.environment.properties"/>
+  	<copy todir="output/ant/webapp/WEB-INF/classes" file="webapp/WEB-INF/client_secrets.json"/>
+  	
+    <war destfile="output/ant/${ant.project.name}.war">
+      <classes dir="${classes.dir}"/>
+      <lib dir="output/ant/webinflib"/>
+      <fileset dir="output/ant/webapp"/>
+    </war>
+  </target>
+
+  <target name="war-aws" depends="compile" description="makes war file">
+      <mkdir dir="output/ant/webinflib"/>
+      <copy flatten="true" todir="output/ant/webinflib">
+        <path>
+          <fileset dir="webapp/WEB-INF/lib">
+             <include name="**/*.jar"/>
+          </fileset>
+        </path>
+      </copy>
+      <copy todir="output/ant/webapp">
+        <fileset dir="webapp"/>
+      </copy>
+      <copy tofile="output/ant/webapp/WEB-INF/environment.properties" file="conf/environment/aws.environment.properties"/>
+      <copy todir="output/ant/webapp/WEB-INF/classes" file="webapp/WEB-INF/client_secrets.json"/>
+      
+      <war destfile="output/ant/${ant.project.name}.war">
+        <classes dir="${classes.dir}"/>
+        <lib dir="output/ant/webinflib"/>
+        <fileset dir="output/ant/webapp"/>
+      </war>
+  </target>
+	
+	<target name="jar" depends="compile" description="Make a jar">
+	      
+	    <mkdir dir="output/classes"/>
+	    <unzip dest="output/classes">
+	      <fileset dir="webapp/WEB-INF/lib">
+	        <include name="**/*.jar"/>
+	      	<exclude name="**/mail.jar"/>
+	      </fileset>
+	    </unzip>
+	    
+		  <copy todir="output/classes">
+		  	<fileset dir="webapp/WEB-INF/classes">
+		  	  <include name="**/*.class"/>
+		  	</fileset>
+		  </copy>
+		
+	    <mkdir dir="output/classes/WEB-INF"/>  
+	    <copy todir="output/classes" file="webapp/WEB-INF/log4j.properties"/>
+	    <copy todir="output/classes" file="webapp/WEB-INF/springapp-servlet.xml"/>
+	    
+	    <copy todir="output/classes/META-INF" file="conf/spring.handlers"/>
+	    <copy todir="output/classes/META-INF" file="conf/spring.schemas"/>
+	    <copy todir="output/classes/META-INF" file="conf/spring.tooling"/>
+	    
+	    <jar destfile="./collabdrive.jar">
+	       <fileset dir="output/classes"/>
+	       <manifest>
+	         <attribute name="Main-Class" value="collabdrive.DriveCommandLine"/>
+	         <attribute name="Build-By" value="ben-ben"/>
+	       </manifest>  
+	    </jar>
+	  
+	  </target>
+	
+	
+</project>

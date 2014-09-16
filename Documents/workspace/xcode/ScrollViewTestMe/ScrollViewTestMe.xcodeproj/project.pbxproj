@@ -1,0 +1,296 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B55D7C13155CC6A5002A2DB2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B55D7C12155CC6A5002A2DB2 /* UIKit.framework */; };
+		B55D7C15155CC6A5002A2DB2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B55D7C14155CC6A5002A2DB2 /* Foundation.framework */; };
+		B55D7C17155CC6A5002A2DB2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B55D7C16155CC6A5002A2DB2 /* CoreGraphics.framework */; };
+		B55D7C1D155CC6A5002A2DB2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B55D7C1B155CC6A5002A2DB2 /* InfoPlist.strings */; };
+		B55D7C1F155CC6A5002A2DB2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B55D7C1E155CC6A5002A2DB2 /* main.m */; };
+		B55D7C23155CC6A5002A2DB2 /* gardellaAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B55D7C22155CC6A5002A2DB2 /* gardellaAppDelegate.m */; };
+		B55D7C26155CC6A5002A2DB2 /* gardellaRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55D7C25155CC6A5002A2DB2 /* gardellaRootViewController.m */; };
+		B55D7C29155CC6A5002A2DB2 /* gardellaDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55D7C28155CC6A5002A2DB2 /* gardellaDataViewController.m */; };
+		B55D7C2C155CC6A5002A2DB2 /* gardellaModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55D7C2B155CC6A5002A2DB2 /* gardellaModelController.m */; };
+		B55D7C2F155CC6A5002A2DB2 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B55D7C2D155CC6A5002A2DB2 /* MainStoryboard.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B55D7C0E155CC6A5002A2DB2 /* ScrollViewTestMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollViewTestMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B55D7C12155CC6A5002A2DB2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B55D7C14155CC6A5002A2DB2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B55D7C16155CC6A5002A2DB2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B55D7C1A155CC6A5002A2DB2 /* ScrollViewTestMe-Info.plist */ = {isa = PBXFileReference; path = "ScrollViewTestMe-Info.plist"; sourceTree = "<group>"; };
+		B55D7C1C155CC6A5002A2DB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B55D7C1E155CC6A5002A2DB2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B55D7C20155CC6A5002A2DB2 /* ScrollViewTestMe-Prefix.pch */ = {isa = PBXFileReference; path = "ScrollViewTestMe-Prefix.pch"; sourceTree = "<group>"; };
+		B55D7C21155CC6A5002A2DB2 /* gardellaAppDelegate.h */ = {isa = PBXFileReference; path = gardellaAppDelegate.h; sourceTree = "<group>"; };
+		B55D7C22155CC6A5002A2DB2 /* gardellaAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gardellaAppDelegate.m; sourceTree = "<group>"; };
+		B55D7C24155CC6A5002A2DB2 /* gardellaRootViewController.h */ = {isa = PBXFileReference; path = gardellaRootViewController.h; sourceTree = "<group>"; };
+		B55D7C25155CC6A5002A2DB2 /* gardellaRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gardellaRootViewController.m; sourceTree = "<group>"; };
+		B55D7C27155CC6A5002A2DB2 /* gardellaDataViewController.h */ = {isa = PBXFileReference; path = gardellaDataViewController.h; sourceTree = "<group>"; };
+		B55D7C28155CC6A5002A2DB2 /* gardellaDataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gardellaDataViewController.m; sourceTree = "<group>"; };
+		B55D7C2A155CC6A5002A2DB2 /* gardellaModelController.h */ = {isa = PBXFileReference; path = gardellaModelController.h; sourceTree = "<group>"; };
+		B55D7C2B155CC6A5002A2DB2 /* gardellaModelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gardellaModelController.m; sourceTree = "<group>"; };
+		B55D7C2E155CC6A5002A2DB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B55D7C0B155CC6A5002A2DB2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B55D7C13155CC6A5002A2DB2 /* UIKit.framework in Frameworks */,
+				B55D7C15155CC6A5002A2DB2 /* Foundation.framework in Frameworks */,
+				B55D7C17155CC6A5002A2DB2 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B55D7C03155CC6A5002A2DB2 = {
+			isa = PBXGroup;
+			children = (
+				B55D7C18155CC6A5002A2DB2 /* ScrollViewTestMe */,
+				B55D7C11155CC6A5002A2DB2 /* Frameworks */,
+				B55D7C0F155CC6A5002A2DB2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B55D7C0F155CC6A5002A2DB2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B55D7C0E155CC6A5002A2DB2 /* ScrollViewTestMe.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B55D7C11155CC6A5002A2DB2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B55D7C12155CC6A5002A2DB2 /* UIKit.framework */,
+				B55D7C14155CC6A5002A2DB2 /* Foundation.framework */,
+				B55D7C16155CC6A5002A2DB2 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B55D7C18155CC6A5002A2DB2 /* ScrollViewTestMe */ = {
+			isa = PBXGroup;
+			children = (
+				B55D7C21155CC6A5002A2DB2 /* gardellaAppDelegate.h */,
+				B55D7C22155CC6A5002A2DB2 /* gardellaAppDelegate.m */,
+				B55D7C24155CC6A5002A2DB2 /* gardellaRootViewController.h */,
+				B55D7C25155CC6A5002A2DB2 /* gardellaRootViewController.m */,
+				B55D7C27155CC6A5002A2DB2 /* gardellaDataViewController.h */,
+				B55D7C28155CC6A5002A2DB2 /* gardellaDataViewController.m */,
+				B55D7C2A155CC6A5002A2DB2 /* gardellaModelController.h */,
+				B55D7C2B155CC6A5002A2DB2 /* gardellaModelController.m */,
+				B55D7C2D155CC6A5002A2DB2 /* MainStoryboard.storyboard */,
+				B55D7C19155CC6A5002A2DB2 /* Supporting Files */,
+			);
+			path = ScrollViewTestMe;
+			sourceTree = "<group>";
+		};
+		B55D7C19155CC6A5002A2DB2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B55D7C1A155CC6A5002A2DB2 /* ScrollViewTestMe-Info.plist */,
+				B55D7C1B155CC6A5002A2DB2 /* InfoPlist.strings */,
+				B55D7C1E155CC6A5002A2DB2 /* main.m */,
+				B55D7C20155CC6A5002A2DB2 /* ScrollViewTestMe-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B55D7C0D155CC6A5002A2DB2 /* ScrollViewTestMe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B55D7C32155CC6A5002A2DB2 /* Build configuration list for PBXNativeTarget "ScrollViewTestMe" */;
+			buildPhases = (
+				B55D7C0A155CC6A5002A2DB2 /* Sources */,
+				B55D7C0B155CC6A5002A2DB2 /* Frameworks */,
+				B55D7C0C155CC6A5002A2DB2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ScrollViewTestMe;
+			productName = ScrollViewTestMe;
+			productReference = B55D7C0E155CC6A5002A2DB2 /* ScrollViewTestMe.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B55D7C05155CC6A5002A2DB2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = gardella;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = B55D7C08155CC6A5002A2DB2 /* Build configuration list for PBXProject "ScrollViewTestMe" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B55D7C03155CC6A5002A2DB2;
+			productRefGroup = B55D7C0F155CC6A5002A2DB2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B55D7C0D155CC6A5002A2DB2 /* ScrollViewTestMe */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B55D7C0C155CC6A5002A2DB2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B55D7C1D155CC6A5002A2DB2 /* InfoPlist.strings in Resources */,
+				B55D7C2F155CC6A5002A2DB2 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B55D7C0A155CC6A5002A2DB2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B55D7C1F155CC6A5002A2DB2 /* main.m in Sources */,
+				B55D7C23155CC6A5002A2DB2 /* gardellaAppDelegate.m in Sources */,
+				B55D7C26155CC6A5002A2DB2 /* gardellaRootViewController.m in Sources */,
+				B55D7C29155CC6A5002A2DB2 /* gardellaDataViewController.m in Sources */,
+				B55D7C2C155CC6A5002A2DB2 /* gardellaModelController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B55D7C1B155CC6A5002A2DB2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B55D7C1C155CC6A5002A2DB2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B55D7C2D155CC6A5002A2DB2 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B55D7C2E155CC6A5002A2DB2 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B55D7C30155CC6A5002A2DB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		B55D7C31155CC6A5002A2DB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B55D7C33155CC6A5002A2DB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScrollViewTestMe/ScrollViewTestMe-Prefix.pch";
+				INFOPLIST_FILE = "ScrollViewTestMe/ScrollViewTestMe-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B55D7C34155CC6A5002A2DB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScrollViewTestMe/ScrollViewTestMe-Prefix.pch";
+				INFOPLIST_FILE = "ScrollViewTestMe/ScrollViewTestMe-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B55D7C08155CC6A5002A2DB2 /* Build configuration list for PBXProject "ScrollViewTestMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B55D7C30155CC6A5002A2DB2 /* Debug */,
+				B55D7C31155CC6A5002A2DB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B55D7C32155CC6A5002A2DB2 /* Build configuration list for PBXNativeTarget "ScrollViewTestMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B55D7C33155CC6A5002A2DB2 /* Debug */,
+				B55D7C34155CC6A5002A2DB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B55D7C05155CC6A5002A2DB2 /* Project object */;
+}

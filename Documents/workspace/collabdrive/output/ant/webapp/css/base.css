@@ -1,0 +1,148 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address,
+big, cite, code, del, dfn, em, font, img, input, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl,
+dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+  background: transparent; }
+
+:focus {
+  outline: 0; }
+
+ol, ul {
+  list-style: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: ""; }
+
+blockquote, q {
+  quotes: "" ""; }
+
+html {
+  font-size: 100.01%; }
+
+body {
+  font-size: 62.5%; }
+
+.clear {
+  clear: both;
+  width: 100%;
+  height: 0;
+  line-height: 0;
+  font-size: 0px;
+  display: block; }
+
+* html .clear {
+  overflow: hidden; }
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden; }
+
+.clearfix {
+  display: inline-block; }
+
+* html .clearfix {
+  height: 1%; }
+
+.clearfix {
+  display: block; }
+
+html, body {
+  height: 100%; }
+
+body {
+  background-color: #FFFFFF;
+  font-family: Helvetica, sans-serif;
+  line-height: 1;
+  overflow: hidden; }
+
+a {
+  cursor: pointer;
+  text-decoration: none; }
+
+a.title {
+  font-weight: bold; }
+
+p {
+  margin-bottom: 10px; }
+
+.button {
+  float: left;
+  margin: 7px -4px 0 25px; }
+
+.hidden, .hidden-code, .mock {
+  display: none !important; }
+
+.row {
+  margin: 7px 0 0 10px; }
+
+strong, .strong {
+  font-weight: bold; }
+
+sup {
+  bottom: 0.4em;
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 0.64em;
+  height: 0;
+  letter-spacing: 1px;
+  line-height: 1;
+  position: relative;
+  vertical-align: baseline; }
+
+body, .required {
+  color: #454544; }
+
+a {
+  color: #fb5906; }
+
+.title {
+  color: #ffffff; }
+
+.notes a, .user span, .user a, .blog a, .support a {
+  color: #acacac; }
+
+.timebox-body, .timebox-body a {
+  color: #fff; }
+
+.message {
+  font-size: 2em;
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  margin-top: 18px;
+  margin-left: 10px; }
+
+.directory {
+  font-size: 1.2em;
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  margin-top: 7px;
+  margin-left: 14px;
+  cursor: pointer; }
+
+.directory-title {
+  position: relative;
+  left: 24px;
+  top: -13px; }
+
+.underscore {
+  cursor: pointer;
+  text-decoration: underline; }
+
+/*# sourceMappingURL=base.css.map */

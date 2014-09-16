@@ -1,0 +1,161 @@
+// COLORS
+$base-text-color: #454544
+$head-light: #acacac
+$link-bg: #ffffff
+$selected-row: #888
+$vb-orange: #fb5906
+
+// IMAGES
+
+// MIXINS
+=base-font
+    font-family: Helvetica, sans-serif
+=bcfff
+    background-color: #fff
+=caps
+    text-transform: uppercase
+=cfff
+    color: #fff
+=fix
+    border: 1px solid red
+=hidden
+    display: none
+=left
+    float: left
+=right
+    float: right
+
+// CSS RESET
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, 
+big, cite, code, del, dfn, em, font, img, input, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, 
+dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td
+    margin:  0
+    padding:  0
+    border:  0
+    outline:  0
+    font-weight:  inherit
+    font-style:  inherit
+    font-size:  100%
+    font-family:  inherit
+    vertical-align:  baseline
+    background:  transparent
+// remember to define focus styles!
+\:focus
+    outline:  0
+ol, ul
+    list-style:  none
+// tables still need 'cellspacing="0"' in the markup
+table
+    border-collapse:  collapse
+    border-spacing:  0
+caption, th, td
+    text-align:  left
+    font-weight:  normal
+blockquote:before, blockquote:after, 
+q:before, q:after
+    content:  ""
+blockquote, q
+    quotes:  "" ""
+// reset font-size so 1em = 10px
+html
+    font-size:  100.01%
+body
+    font-size:  62.5%
+
+// CLEARFIX
+.clear
+    clear: both
+    width: 100%
+    height: 0
+    line-height: 0
+    font-size: 0px
+    display: block
+* html .clear
+    overflow:  hidden 
+    // can't apply to .clear, safari2 has issues
+.clearfix:after
+    content:  "."
+    display:  block
+    height:  0
+    clear:  both
+    visibility:  hidden
+.clearfix
+    display:  inline-block
+// Hides from IE-mac
+* html .clearfix
+    height:  1%
+.clearfix
+    display:  block
+// End hide from IE-mac
+
+// UNIVERSAL STYLES
+html, body
+    height: 100%
+body
+    background-color: #FFFFFF
+    +base-font
+    line-height: 1
+    overflow: hidden
+a
+    cursor: pointer
+    text-decoration: none
+a.title
+    font-weight: bold
+p
+    margin-bottom: 10px
+.button
+    float: left
+    margin: 7px -4px 0 25px
+// these classes are used in cases where we need a script object or array in the 
+// HTML that we can pass to JavaScript, a dummy HTML element, or any hidden elemnt
+.hidden, .hidden-code, .mock
+    display: none !important
+.row
+    margin: 7px 0 0 10px
+strong, .strong
+    font-weight: bold
+sup
+    bottom: 0.4em
+    font-family: Verdana,Helvetica,Arial,sans-serif
+    font-size: 0.64em
+    height: 0
+    letter-spacing: 1px
+    line-height: 1
+    position: relative
+    vertical-align: baseline
+
+// TEXT COLORS
+body, .required
+    color: $base-text-color
+a
+    color: $vb-orange
+.title
+    color: $link-bg
+.notes a, .user span, .user a, .blog a, .support a
+    color: $head-light
+.timebox-body, .timebox-body a
+    +cfff
+
+//////////////////////////////////////////////////////////
+.message
+    font-size: 2em     
+    font-family: Verdana,Helvetica,Arial,sans-serif
+    margin-top: 18px
+    margin-left: 10px
+     
+.directory
+    font-size: 1.2em
+    font-family: Verdana,Helvetica,Arial,sans-serif
+    margin-top: 7px
+    margin-left: 14px
+    cursor: pointer
+    
+.directory-title
+    position: relative
+    left: 24px
+    top: -13px  
+    
+.underscore
+    cursor: pointer
+    text-decoration: underline     
+    
